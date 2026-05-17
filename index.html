@@ -1,0 +1,4988 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#F5F1E8">
+<meta name="apple-mobile-web-app-title" content="Programma">
+<title>Programma · 18 mag – 10 giu</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   THEME: Italian editorial — crema, nero profondo, oro caldo
+   ========================================================= */
+:root {
+  /* Light (default) */
+  --bg: #F5F1E8;            /* crema pallida */
+  --bg-card: #FFFFFF;
+  --bg-elev: #FAF6ED;       /* card alternative */
+  --ink: #1A1611;           /* nero caffe */
+  --ink-soft: #524A3D;
+  --ink-faded: #8A7F6B;
+  --gold: #B8884A;          /* oro caldo */
+  --gold-soft: #D4B58A;
+  --line: #E8DFCC;          /* linea sottile */
+  --line-strong: #C9BFA8;
+  --check-fill: #1A1611;
+  --check-bg: transparent;
+  --shadow-sm: 0 1px 2px rgba(26,22,17,0.04);
+  --shadow-md: 0 4px 16px rgba(26,22,17,0.08);
+  --shadow-lg: 0 12px 40px rgba(26,22,17,0.12);
+  --radius: 14px;
+  --radius-sm: 8px;
+  --header-h: env(safe-area-inset-top, 0);
+  --tabbar-h: 70px;
+  --content-pad: calc(env(safe-area-inset-bottom, 0) + var(--tabbar-h) + 12px);
+
+  /* Type */
+  --font-display: 'Fraunces', 'Times New Roman', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+[data-theme="dark"] {
+  --bg: #14110D;
+  --bg-card: #1F1B16;
+  --bg-elev: #25201A;
+  --ink: #F0EBE0;
+  --ink-soft: #C9BFA8;
+  --ink-faded: #8A7F6B;
+  --gold: #D4A876;
+  --gold-soft: #B8884A;
+  --line: #2F2A22;
+  --line-strong: #3E382D;
+  --check-fill: #F0EBE0;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.6);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  overscroll-behavior: none;
+}
+
+body {
+  min-height: 100vh;
+  padding-top: env(safe-area-inset-top, 0);
+  padding-bottom: 0;
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 20px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: rgba(245,241,232,0.92);
+}
+[data-theme="dark"] .app-header {
+  background: rgba(20,17,13,0.92);
+}
+
+.app-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  font-style: italic;
+}
+
+.app-subtitle {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-faded);
+  margin-top: 2px;
+}
+
+.theme-toggle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+  color: var(--ink);
+}
+.theme-toggle:active { transform: scale(0.92); }
+.theme-toggle svg { width: 20px; height: 20px; }
+
+/* =========================================================
+   MAIN VIEW CONTAINER
+   ========================================================= */
+.view {
+  display: none;
+  padding: 0 20px var(--content-pad);
+  animation: fadeIn 0.25s ease;
+}
+.view.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* =========================================================
+   PROGRESS BAR (top of "Oggi")
+   ========================================================= */
+.progress-section {
+  padding: 18px 0 8px;
+}
+.progress-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-faded);
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.progress-percent {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+.progress-bar {
+  height: 6px;
+  background: var(--line);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 3px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================================
+   DAY HEADER (large editorial title)
+   ========================================================= */
+.day-header {
+  padding: 18px 0 22px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 24px;
+}
+
+.day-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.nav-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--ink);
+  transition: transform 0.15s ease, background 0.2s ease;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.nav-arrow:active { transform: scale(0.9); background: var(--bg-elev); }
+.nav-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.day-pill {
+  text-align: center;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ink-faded);
+  font-weight: 600;
+}
+
+.day-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0 0 6px;
+}
+.day-title em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.day-subtitle {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-style: normal;
+  color: var(--ink-soft);
+  line-height: 1.4;
+  margin-top: 6px;
+}
+
+.day-type-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+}
+.day-type-badge.type-sport { color: #8B3A3A; border-color: rgba(139,58,58,0.3); }
+.day-type-badge.type-running { color: var(--gold); border-color: rgba(184,136,74,0.4); }
+.day-type-badge.type-rest { color: #4A7C59; border-color: rgba(74,124,89,0.3); }
+.day-type-badge.type-home { color: #2E5984; border-color: rgba(46,89,132,0.3); }
+.day-type-badge.type-office { color: var(--ink-soft); }
+
+[data-theme="dark"] .day-type-badge.type-sport { color: #E08585; }
+[data-theme="dark"] .day-type-badge.type-running { color: var(--gold); }
+[data-theme="dark"] .day-type-badge.type-rest { color: #8DC79E; }
+[data-theme="dark"] .day-type-badge.type-home { color: #7BAACC; }
+
+/* =========================================================
+   SECTION CARDS
+   ========================================================= */
+.section {
+  margin-bottom: 28px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  margin: 0 0 14px;
+  padding-left: 2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.card-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+/* =========================================================
+   CHECKABLE ITEM
+   ========================================================= */
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 4px;
+  cursor: pointer;
+  min-height: 44px;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: opacity 0.2s ease;
+  position: relative;
+}
+.check-item + .check-item {
+  border-top: 1px solid var(--line);
+}
+
+.checkbox {
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 5px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  margin-top: 1px;
+}
+
+.check-item.checked .checkbox {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+[data-theme="dark"] .check-item.checked .checkbox {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.checkbox svg {
+  width: 14px;
+  height: 14px;
+  opacity: 0;
+  color: var(--bg);
+  transition: opacity 0.2s ease;
+}
+.check-item.checked .checkbox svg { opacity: 1; }
+
+.check-text {
+  flex: 1;
+  font-size: 14.5px;
+  line-height: 1.45;
+  color: var(--ink);
+  transition: all 0.2s ease;
+}
+
+.check-item.checked .check-text {
+  color: var(--ink-faded);
+  text-decoration: line-through;
+  text-decoration-color: var(--ink-faded);
+  text-decoration-thickness: 1px;
+}
+
+.check-time {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-style: italic;
+  color: var(--gold);
+  margin-right: 8px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* Recipe link inline */
+.recipe-link {
+  color: var(--gold);
+  text-decoration: underline;
+  text-decoration-color: var(--gold-soft);
+  text-underline-offset: 3px;
+  cursor: pointer;
+  font-weight: 500;
+}
+.recipe-link:active { opacity: 0.6; }
+
+/* =========================================================
+   WORKOUT CARD (special)
+   ========================================================= */
+.workout-card {
+  background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-elev) 100%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 18px 16px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-md);
+}
+.workout-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0 0 4px;
+}
+.workout-meta {
+  font-size: 12px;
+  color: var(--ink-faded);
+  font-style: italic;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+.workout-section-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  color: var(--gold);
+  margin: 14px 0 6px;
+}
+.workout-warmup, .workout-cooldown {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  padding: 8px 12px;
+  background: var(--bg-elev);
+  border-radius: var(--radius-sm);
+  border-left: 2px solid var(--gold-soft);
+}
+
+.exercise-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.exercise-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  min-height: 48px;
+}
+.exercise-item:last-child { border-bottom: none; }
+.exercise-checkbox {
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 5px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+.exercise-item.done .exercise-checkbox {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+[data-theme="dark"] .exercise-item.done .exercise-checkbox {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+.exercise-item.done .exercise-checkbox svg { opacity: 1; }
+.exercise-checkbox svg { width: 14px; height: 14px; opacity: 0; color: var(--bg); }
+
+.exercise-name {
+  flex: 1;
+  font-size: 14.5px;
+  color: var(--ink);
+  font-weight: 500;
+}
+.exercise-reps {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-style: italic;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.exercise-note {
+  font-size: 12px;
+  color: var(--ink-faded);
+  font-style: italic;
+  margin-top: 2px;
+}
+.exercise-item.done .exercise-name {
+  color: var(--ink-faded);
+  text-decoration: line-through;
+}
+
+.timer-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 14px;
+  padding: 14px;
+  background: var(--ink);
+  color: var(--bg);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  min-height: 48px;
+  transition: transform 0.15s ease;
+  text-transform: uppercase;
+}
+[data-theme="dark"] .timer-btn {
+  background: var(--gold);
+  color: var(--ink);
+}
+.timer-btn:active { transform: scale(0.98); }
+.timer-btn svg { width: 16px; height: 16px; }
+
+/* =========================================================
+   TAB BAR (bottom navigation)
+   ========================================================= */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  background: var(--bg-card);
+  border-top: 1px solid var(--line);
+  padding: 6px 6px env(safe-area-inset-bottom, 6px);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.92);
+}
+[data-theme="dark"] .tab-bar {
+  background: rgba(31,27,22,0.94);
+}
+
+.tab-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 8px 4px;
+  background: none;
+  border: none;
+  color: var(--ink-faded);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  min-height: 50px;
+  transition: color 0.2s ease;
+}
+.tab-btn svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 1.5;
+}
+.tab-btn.active {
+  color: var(--ink);
+}
+[data-theme="dark"] .tab-btn.active {
+  color: var(--gold);
+}
+
+/* =========================================================
+   CALENDARIO VIEW
+   ========================================================= */
+.calendar-header {
+  padding: 24px 0 18px;
+  text-align: center;
+}
+.calendar-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin: 0 0 4px;
+}
+.calendar-subtitle {
+  font-size: 12px;
+  color: var(--ink-faded);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.calendar-day-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+  color: var(--ink-faded);
+  padding: 6px 0;
+}
+
+.calendar-cell {
+  aspect-ratio: 1 / 1.1;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  min-height: 44px;
+}
+.calendar-cell:active { transform: scale(0.94); }
+
+.calendar-cell.empty {
+  background: transparent;
+  border: none;
+  cursor: default;
+}
+
+.calendar-cell-num {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1;
+}
+.calendar-cell-day {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-faded);
+  margin-top: 3px;
+  font-weight: 600;
+}
+
+.calendar-cell.completed {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+[data-theme="dark"] .calendar-cell.completed {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+.calendar-cell.completed .calendar-cell-num,
+.calendar-cell.completed .calendar-cell-day {
+  color: var(--bg);
+}
+
+.calendar-cell.partial::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.calendar-cell.today {
+  outline: 2px solid var(--gold);
+  outline-offset: -1px;
+}
+
+.calendar-cell.future {
+  opacity: 0.45;
+}
+
+.calendar-legend {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  color: var(--ink-faded);
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.legend-square {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  border: 1px solid var(--line);
+}
+.legend-square.completed { background: var(--ink); border-color: var(--ink); }
+.legend-square.today { outline: 2px solid var(--gold); }
+.legend-square.partial { position: relative; }
+.legend-square.partial::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+[data-theme="dark"] .legend-square.completed { background: var(--gold); border-color: var(--gold); }
+
+/* =========================================================
+   STATISTICHE VIEW
+   ========================================================= */
+.stats-header {
+  padding: 24px 0 18px;
+  text-align: center;
+}
+.stats-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 20px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow-sm);
+}
+.stat-card-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-faded);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.stat-card-value {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+.stat-card-value em {
+  font-style: italic;
+  font-weight: 400;
+}
+.stat-card-sub {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-top: 6px;
+}
+
+.stats-bars {
+  margin-top: 18px;
+}
+.week-stat {
+  margin-bottom: 14px;
+}
+.week-stat-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+.week-stat-name {
+  font-weight: 500;
+}
+.week-stat-pct {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--gold);
+}
+.week-stat-bar {
+  height: 6px;
+  background: var(--line);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.week-stat-fill {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 3px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================================
+   RICETTE VIEW
+   ========================================================= */
+.ricette-header {
+  padding: 24px 0 18px;
+}
+.ricette-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 26px;
+  font-weight: 500;
+  text-align: center;
+  margin: 0 0 4px;
+}
+.ricette-subtitle {
+  font-size: 12px;
+  color: var(--ink-faded);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+
+.ricetta-item {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 60px;
+  transition: transform 0.15s ease;
+}
+.ricetta-item:active { transform: scale(0.98); }
+
+.ricetta-info {
+  flex: 1;
+}
+.ricetta-nome {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.ricetta-meta {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faded);
+  display: flex;
+  gap: 10px;
+}
+.ricetta-arrow {
+  color: var(--ink-faded);
+  font-size: 18px;
+}
+
+/* =========================================================
+   MODAL (recipe & timer)
+   ========================================================= */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(26,22,17,0.5);
+  z-index: 200;
+  display: none;
+  align-items: flex-end;
+  animation: fadeIn 0.2s ease;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+.modal-backdrop.show { display: flex; }
+
+.modal {
+  width: 100%;
+  background: var(--bg);
+  border-radius: 20px 20px 0 0;
+  max-height: 92vh;
+  overflow-y: auto;
+  padding: 0;
+  animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: none; }
+}
+
+.modal-handle {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 6px;
+}
+.modal-handle::before {
+  content: '';
+  width: 38px;
+  height: 4px;
+  background: var(--line-strong);
+  border-radius: 2px;
+}
+
+.modal-header {
+  padding: 8px 22px 20px;
+  border-bottom: 1px solid var(--line);
+}
+.modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--ink);
+  z-index: 10;
+}
+.modal-close svg { width: 18px; height: 18px; }
+
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin: 4px 0 4px;
+  padding-right: 40px;
+}
+.modal-title em { font-style: italic; }
+
+.modal-meta {
+  display: flex;
+  gap: 14px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faded);
+  font-weight: 600;
+}
+
+.modal-body {
+  padding: 18px 22px 24px;
+}
+
+.modal-section-title {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  margin: 18px 0 10px;
+  padding: 0;
+}
+.modal-section-title:first-child { margin-top: 0; }
+
+.modal-list {
+  margin: 0;
+  padding-left: 22px;
+}
+.modal-list li {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.modal-list.numbered {
+  list-style: none;
+  padding-left: 0;
+  counter-reset: step;
+}
+.modal-list.numbered li {
+  counter-increment: step;
+  padding-left: 32px;
+  position: relative;
+  margin-bottom: 14px;
+}
+.modal-list.numbered li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 22px;
+  height: 22px;
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+}
+[data-theme="dark"] .modal-list.numbered li::before {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+.modal-note {
+  margin-top: 18px;
+  padding: 12px 14px;
+  background: var(--bg-elev);
+  border-left: 2px solid var(--gold);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  line-height: 1.5;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+/* =========================================================
+   TIMER MODAL
+   ========================================================= */
+.timer-display {
+  text-align: center;
+  padding: 24px 0 20px;
+}
+.timer-phase {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  color: var(--ink-faded);
+  margin-bottom: 12px;
+}
+.timer-phase.work { color: #C53030; }
+.timer-phase.rest { color: #2F855A; }
+[data-theme="dark"] .timer-phase.work { color: #FC8181; }
+[data-theme="dark"] .timer-phase.rest { color: #68D391; }
+
+.timer-number {
+  font-family: var(--font-display);
+  font-size: 90px;
+  font-weight: 400;
+  line-height: 1;
+  font-style: italic;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-info {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-top: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.timer-controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+}
+.timer-control-btn {
+  flex: 1;
+  padding: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  cursor: pointer;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.timer-control-btn.primary {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+[data-theme="dark"] .timer-control-btn.primary {
+  background: var(--gold);
+  color: var(--ink);
+  border-color: var(--gold);
+}
+.timer-control-btn:active { transform: scale(0.98); }
+
+.timer-settings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.timer-setting {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  text-align: center;
+}
+.timer-setting-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-faded);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.timer-setting-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.timer-pm-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  font-size: 16px;
+  cursor: pointer;
+  color: var(--ink);
+  font-weight: 600;
+  line-height: 1;
+}
+.timer-setting-value {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-style: italic;
+  min-width: 36px;
+}
+
+/* =========================================================
+   PRESET TIMERS
+   ========================================================= */
+.preset-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 22px;
+}
+.preset-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  min-height: 56px;
+}
+.preset-btn:active { transform: scale(0.98); }
+.preset-name {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 500;
+}
+.preset-spec {
+  font-size: 12px;
+  color: var(--ink-faded);
+  font-style: italic;
+}
+
+/* =========================================================
+   EMPTY / WELCOME
+   ========================================================= */
+.welcome {
+  text-align: center;
+  padding: 40px 24px;
+  color: var(--ink-soft);
+}
+.welcome-icon {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-style: italic;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+/* =========================================================
+   SCROLL & MISC
+   ========================================================= */
+.no-scroll { overflow: hidden; }
+
+::-webkit-scrollbar { width: 0; height: 0; }
+
+/* Small / large screen adjustments */
+@media (max-width: 360px) {
+  .day-title { font-size: 26px; }
+  .timer-number { font-size: 72px; }
+  .modal-title { font-size: 22px; }
+}
+
+/* Tap feedback */
+@media (hover: hover) {
+  .check-item:hover { background: rgba(184, 136, 74, 0.04); border-radius: var(--radius-sm); }
+}
+</style>
+</head>
+<body>
+
+<!-- Headers & app content will be appended by JS -->
+<div id="app"></div>
+
+<script>
+
+
+
+// ============== DATI DEL PROGRAMMA ==============
+const DAYS = [
+  {
+    "title": "Lunedi 18 maggio",
+    "sottotitolo": "Inizio del programma - spesa + addominali",
+    "pasti": [
+      {
+        "tipo": "Colazione",
+        "items": [
+          "Skyr senza lattosio 0% (150 g) + 30 g avena + 1 banana + 1 cucchiaino miele + 7 mandorle. Cappuccino."
+        ]
+      },
+      {
+        "tipo": "Spuntino mattina",
+        "items": [
+          "1 mela + tisana o acqua"
+        ]
+      },
+      {
+        "tipo": "Pranzo (in ufficio - sandwich)",
+        "items": [
+          "1/2 baguette: prosciutto crudo + brie + insalata + un filo d'olio d'oliva. 1 frutto (mela o banana). Acqua."
+        ]
+      },
+      {
+        "tipo": "Spuntino pomeriggio",
+        "items": [
+          "1 skyr senza lattosio + 1 cucchiaino miele + 7 nocciole"
+        ]
+      },
+      {
+        "tipo": "Cena",
+        "items": [
+          "Pollo alla piastra (110 g) + zucchine grigliate (a volonta) + 80 g patate al forno con rosmarino. Quadratino di cioccolato fondente 85% (10 g) o tisana zenzero-limone."
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "07:45",
+        "att": "Sveglia, acqua, doccia"
+      },
+      {
+        "ora": "08:00",
+        "att": "Colazione tranquilla"
+      },
+      {
+        "ora": "08:50",
+        "att": "Uscita di casa (40 min trasporti)"
+      },
+      {
+        "ora": "09:30 - 17:30",
+        "att": "Lavoro (pranzo 12:30)"
+      },
+      {
+        "ora": "18:10",
+        "att": "Rientro, cambio abiti"
+      },
+      {
+        "ora": "18:30",
+        "att": "Spesa Delhaize o Colruyt (30-40 min)"
+      },
+      {
+        "ora": "19:15",
+        "att": "Sistemazione spesa, relax"
+      },
+      {
+        "ora": "19:45",
+        "att": "Routine addominali (10 min)"
+      },
+      {
+        "ora": "20:00",
+        "att": "Cena con il compagno"
+      },
+      {
+        "ora": "21:00 - 23:30",
+        "att": "Relax, lettura, divano"
+      },
+      {
+        "ora": "23:30 - 00:00",
+        "att": "A letto"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "Sport: Routine addominali (10 min)",
+        "testo": "Vedi appendice 1 - versione standard",
+        "items": [
+          "Crunch 3 x 15",
+          "Bicycle crunch 3 x 20",
+          "Plank 3 x 40 sec",
+          "Side plank 2 x 25 sec/lato",
+          "Crunch inversi 3 x 12"
+        ]
+      },
+      {
+        "titolo": "Faccende",
+        "items": [
+          "Spesa Delhaize o Colruyt (~30-40 min)",
+          "Sistemazione della spesa",
+          "Lavatrice: no (solo giorni da casa)"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Martedi 19 maggio - Seduta sportiva",
+    "sottotitolo": "Gambe e glutei (45 min)",
+    "pasti": [
+      {
+        "tipo": "Colazione",
+        "items": [
+          "Porridge: 40 g avena con 200 ml bevanda vegetale (avena o mandorla) + 1 cucchiaino burro d'arachidi + 1/2 banana + cannella. Cappuccino."
+        ]
+      },
+      {
+        "tipo": "Spuntino mattina",
+        "items": [
+          "1 pera + 1 quadratino cioccolato fondente 70%"
+        ]
+      },
+      {
+        "tipo": "Pranzo (in ufficio - sandwich)",
+        "items": [
+          "1/2 baguette: omelette (2 uova) + insalata + un filo d'olio d'oliva. 1 frutto. Oggi sera si va in sala pesi: importante non saltare lo spuntino pre-workout."
+        ]
+      },
+      {
+        "tipo": "Spuntino pre-workout (17:45)",
+        "items": [
+          "1 banana + 10 g mandorle (7-8 mandorle). FONDAMENTALE per avere energia"
+        ]
+      },
+      {
+        "tipo": "Recupero immediato post-workout (19:15)",
+        "items": [
+          "Shake proteico: 1 scoop di proteine in polvere in 250 ml di acqua. Da bere entro 30 min dalla fine dell'allenamento."
+        ]
+      },
+      {
+        "tipo": "Cena post-workout",
+        "items": [
+          "Salmone al forno (110 g) con limone + 60 g riso basmati + broccoli al vapore con olio d'oliva. Dessert: 2 quadratini di cioccolato fondente 85%."
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "07:45 - 08:00",
+        "att": "Sveglia, doccia, colazione"
+      },
+      {
+        "ora": "08:50 - 09:30",
+        "att": "Trasporti"
+      },
+      {
+        "ora": "09:30 - 17:30",
+        "att": "Lavoro (pranzo 12:30)"
+      },
+      {
+        "ora": "18:10",
+        "att": "Rientro, snack pre-workout"
+      },
+      {
+        "ora": "18:30",
+        "att": "Allenamento 40-45 min"
+      },
+      {
+        "ora": "19:15",
+        "att": "Doccia, recupero"
+      },
+      {
+        "ora": "19:45",
+        "att": "Cena con il compagno"
+      },
+      {
+        "ora": "20:45 - 23:30",
+        "att": "Relax, no schermi blu"
+      },
+      {
+        "ora": "23:30 - 00:00",
+        "att": "A letto"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "Allenamento - Gambe e glutei",
+        "testo": "Riscaldamento 5 min: jumping jack, mobilita anche, 20 squat lenti",
+        "tabella": [
+          [
+            "Squat corpo libero",
+            "4 x 15",
+            "Lento, schiena dritta"
+          ],
+          [
+            "Affondi alternati",
+            "3 x 12/gamba",
+            "Ginocchio dietro la punta"
+          ],
+          [
+            "Ponte gluteo",
+            "4 x 20",
+            "Contrarre in alto"
+          ],
+          [
+            "Squat con elastico",
+            "3 x 15",
+            "Aprire le ginocchia"
+          ],
+          [
+            "Stacchi a 1 gamba",
+            "3 x 10/gamba",
+            "Lento, controllato"
+          ],
+          [
+            "Plank",
+            "3 x 30 sec",
+            "Recupero 30 sec"
+          ]
+        ]
+      },
+      {
+        "testo": "Defaticamento 5 min: stretching gambe e glutei"
+      }
+    ]
+  },
+  {
+    "title": "Mercoledi 20 maggio - Lavoro da casa",
+    "sottotitolo": "1a lavatrice + pulizie zona 1 + preparazione pranzo giovedì",
+    "pasti": [
+      {
+        "tipo": "Colazione",
+        "items": [
+          "Skyr senza lattosio (150 g) + granola/muesli senza zucchero (25 g) + mango a cubetti (80 g) + 1 cucchiaino miele. Cappuccino."
+        ]
+      },
+      {
+        "tipo": "Spuntino mattina",
+        "items": [
+          "1 frutto + 7 mandorle"
+        ]
+      },
+      {
+        "tipo": "Pranzo (veloce, da casa)",
+        "items": [
+          "Frittata con verdure: 2 uova + zucchine e cipolla saltate + 50 g pane integrale. Insalata mista."
+        ]
+      },
+      {
+        "tipo": "Spuntino pomeriggio",
+        "items": [
+          "Toast: 1 fetta pane integrale + 1/2 avocado + sale, pepe (alternativa senza lattosio)"
+        ]
+      },
+      {
+        "tipo": "Cena",
+        "items": [
+          "Pasta integrale (60 g) con sugo pomodoro fresco e basilico + 1 cucchiaio parmigiano. Spinacini + 1 uovo sodo. Dessert: tisana zenzero-limone o 1 quadratino cioccolato fondente 85%."
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "08:00",
+        "att": "Sveglia tranquilla, colazione"
+      },
+      {
+        "ora": "09:00",
+        "att": "Avvio lavatrice n.1"
+      },
+      {
+        "ora": "09:30 - 12:30",
+        "att": "Lavoro"
+      },
+      {
+        "ora": "12:30 - 13:15",
+        "att": "Pranzo + stesura bucato"
+      },
+      {
+        "ora": "13:15 - 17:30",
+        "att": "Lavoro"
+      },
+      {
+        "ora": "17:30 - 18:30",
+        "att": "Pulizie zona 1: bagno + cucina (1h)"
+      },
+      {
+        "ora": "18:30 - 18:45",
+        "att": "Routine addominali (12 min)"
+      },
+      {
+        "ora": "19:00",
+        "att": "Ritiro bucato, sistemazione"
+      },
+      {
+        "ora": "19:30",
+        "att": "Preparazione pranzo giovedì (~15 min)"
+      },
+      {
+        "ora": "20:00",
+        "att": "Cena"
+      },
+      {
+        "ora": "23:30 - 00:00",
+        "att": "A letto"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "Sport: Routine addominali (12 min)",
+        "items": [
+          "Plank 3 x 40 sec",
+          "Crunch 3 x 15",
+          "Bicycle crunch 3 x 20",
+          "Side plank 2 x 25 sec/lato",
+          "Russian twist 3 x 20",
+          "Plank con touch 2 x 30 sec"
+        ]
+      },
+      {
+        "titolo": "Faccende: 1a lavatrice + pulizie zona 1",
+        "items": [
+          "Avvio lavatrice n.1 (colorati o intimo) ore 9",
+          "Stesura del bucato a pranzo (~15 min)",
+          "Pulizie zona 1: bagno (lavabo, doccia, water) + cucina (piano, lavabo, frigo, pavimento)",
+          "Preparare il Buddha bowl per giovedì (contenitore ermetico)"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Giovedi 21 maggio - Seduta sportiva",
+    "sottotitolo": "HIIT parte alta + core (45 min)",
+    "pasti": [
+      {
+        "tipo": "Colazione",
+        "items": [
+          "Smoothie bowl: 1 banana + 80 g mango surgelato + 150 g skyr senza lattosio + 20 g avena + 1 cucchiaino burro di mandorle. Topping: 15 g granola. Cappuccino."
+        ]
+      },
+      {
+        "tipo": "Spuntino mattina",
+        "items": [
+          "1 mela + 7 anacardi"
+        ]
+      },
+      {
+        "tipo": "Pranzo (in ufficio - portato da casa, preparato mercoledì sera)",
+        "items": [
+          "Buddha bowl: 60 g farro o orzo + ceci (60 g) + carote a julienne + spinacini + 1/2 avocado + tahin con limone. Conservare in contenitore ermetico in frigo al lavoro."
+        ]
+      },
+      {
+        "tipo": "Spuntino pre-workout",
+        "items": [
+          "1 banana + 2 datteri. 1 espresso se serve."
+        ]
+      },
+      {
+        "tipo": "Recupero immediato post-workout",
+        "items": [
+          "Shake proteico: 1 scoop in acqua (entro 30 min)"
+        ]
+      },
+      {
+        "tipo": "Cena post-workout",
+        "items": [
+          "Tacchino alla piastra (110 g) + 80 g patate dolci al forno + asparagi o fagiolini. Dessert: mug cake proteica (1/2 scoop proteine + 1 cucchiaio cacao + bevanda d'avena + dolcificante, 60 sec microonde)."
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "07:45 - 08:00",
+        "att": "Sveglia, doccia, colazione"
+      },
+      {
+        "ora": "08:50 - 09:30",
+        "att": "Trasporti"
+      },
+      {
+        "ora": "09:30 - 17:30",
+        "att": "Lavoro"
+      },
+      {
+        "ora": "18:10",
+        "att": "Rientro, snack pre-workout"
+      },
+      {
+        "ora": "18:30",
+        "att": "Allenamento 40-45 min"
+      },
+      {
+        "ora": "19:15",
+        "att": "Doccia"
+      },
+      {
+        "ora": "19:45",
+        "att": "Cena"
+      },
+      {
+        "ora": "20:45 - 23:30",
+        "att": "Relax"
+      },
+      {
+        "ora": "23:30 - 00:00",
+        "att": "A letto"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "HIIT - Parte alta + core",
+        "testo": "Riscaldamento 5 min. Circuito: 40 sec lavoro / 20 sec recupero. 4 giri, pausa 1 min tra i giri.",
+        "tabella": [
+          [
+            "Push-up",
+            "40\"/20\" x 4",
+            "Ginocchia se serve"
+          ],
+          [
+            "Rematore elastico",
+            "40\"/20\" x 4",
+            "Stringere scapole"
+          ],
+          [
+            "Mountain climber",
+            "40\"/20\" x 4",
+            "Plank stabile"
+          ],
+          [
+            "Dip su sedia",
+            "40\"/20\" x 4",
+            "Gomiti dietro"
+          ],
+          [
+            "Plank con tap spalla",
+            "40\"/20\" x 4",
+            "Bacino fermo"
+          ],
+          [
+            "Crunch inversi",
+            "40\"/20\" x 4",
+            "Lento, controllato"
+          ]
+        ]
+      },
+      {
+        "testo": "Defaticamento 5 min: gatto-mucca, posizione bambino, spalle"
+      }
+    ]
+  },
+  {
+    "title": "Venerdi 22 maggio - Lavoro da casa",
+    "sottotitolo": "2a lavatrice + pulizie zona 2 + addominali",
+    "pasti": [
+      {
+        "tipo": "Colazione",
+        "items": [
+          "Pancake proteici: 2 uova + 30 g avena + 1/2 banana frullati e cotti. Topping: miele + 1/2 pesca a fette. Cappuccino."
+        ]
+      },
+      {
+        "tipo": "Spuntino mattina",
+        "items": [
+          "1 skyr senza lattosio + 1/2 pesca a fette"
+        ]
+      },
+      {
+        "tipo": "Pranzo (veloce, da casa)",
+        "items": [
+          "Insalata di pollo (90 g) + insalata mista + mais (40 g) + pomodorini + 1/2 avocado + crostini integrali (20 g). Olio e limone."
+        ]
+      },
+      {
+        "tipo": "Spuntino pomeriggio",
+        "items": [
+          "1 frutto + 3-4 noci"
+        ]
+      },
+      {
+        "tipo": "Cena (venerdi leggero)",
+        "items": [
+          "Vellutata di zucca o carote + 2 uova alla coque + 1 fetta pane integrale. Dessert: 1 quadratino cioccolato fondente 85%."
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "08:00",
+        "att": "Sveglia tranquilla, colazione"
+      },
+      {
+        "ora": "09:00",
+        "att": "Avvio lavatrice n.2 (scuri o asciugamani)"
+      },
+      {
+        "ora": "09:30 - 12:30",
+        "att": "Lavoro"
+      },
+      {
+        "ora": "12:30 - 13:15",
+        "att": "Pranzo + stesura del bucato"
+      },
+      {
+        "ora": "13:15 - 17:30",
+        "att": "Lavoro"
+      },
+      {
+        "ora": "17:30 - 19:00",
+        "att": "Pulizie zona 2: salotto + camera + aspirapolvere (1h30)"
+      },
+      {
+        "ora": "19:00",
+        "att": "Routine addominali (10 min)"
+      },
+      {
+        "ora": "19:30",
+        "att": "Ritiro/sistemazione bucato secco"
+      },
+      {
+        "ora": "19:45",
+        "att": "Cena tranquilla"
+      },
+      {
+        "ora": "20:30 - 23:30",
+        "att": "Serata libera (film, libro)"
+      },
+      {
+        "ora": "23:30 - 00:00",
+        "att": "A letto"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "Sport: Addominali versione corta (8 min)",
+        "items": [
+          "Plank 3 x 30 sec",
+          "Crunch 3 x 15",
+          "Bicycle crunch 3 x 15",
+          "Side plank 2 x 20 sec/lato"
+        ]
+      },
+      {
+        "titolo": "Faccende: 2a lavatrice + pulizie zona 2",
+        "items": [
+          "Avvio lavatrice n.2 ore 9 (scuri, asciugamani, sport)",
+          "Stesura del bucato a pranzo",
+          "Pulizie zona 2: salotto (spolverare, riordinare) + camera (cambio lenzuola) + aspirapolvere casa",
+          "Ritiro e sistemazione bucato la sera"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Sabato 23 maggio - Corsa + cheat meal sera",
+    "sottotitolo": "Corsa W1: 25-30 min - Cena fuori (pizza o burger) - dal compagno",
+    "pasti": [
+      {
+        "tipo": "Colazione (pre-corsa, leggera)",
+        "items": [
+          "1 fetta pane integrale + formaggio fresco spalmabile senza lattosio + miele + 1 banana. Cappuccino con bevanda d'avena. (Più leggera del solito per fare spazio alla cena di stasera.)"
+        ]
+      },
+      {
+        "tipo": "Recupero post-corsa",
+        "items": [
+          "1 skyr senza lattosio + 1/2 mango a cubetti (no granola, gia calorie a sufficienza per la giornata)"
+        ]
+      },
+      {
+        "tipo": "Pranzo (leggero, in coppia)",
+        "items": [
+          "Insalata grande: lattuga + 90 g pollo grigliato + finocchio a fette + pomodorini + 1/2 avocado + olio d'oliva. NO pane, NO pasta - lascia spazio per la cena."
+        ]
+      },
+      {
+        "tipo": "Spuntino pomeriggio",
+        "items": [
+          "1 frutto + tisana"
+        ]
+      },
+      {
+        "tipo": "CENA - CHEAT MEAL al ristorante",
+        "items": [
+          "Pizza o burger a scelta. Acqua + 1 bicchiere di vino o birra se vuoi. Goditi senza colpa! Evita patatine extra + dessert: scegli uno dei due."
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "09:30",
+        "att": "Sveglia tranquilla (weekend)"
+      },
+      {
+        "ora": "10:00",
+        "att": "Colazione leggera"
+      },
+      {
+        "ora": "11:00",
+        "att": "Corsa (tapis o esterno) 25-30 min"
+      },
+      {
+        "ora": "11:45",
+        "att": "Doccia, recupero"
+      },
+      {
+        "ora": "12:30",
+        "att": "Trasferimento dal compagno (o aspetti che venga lui)"
+      },
+      {
+        "ora": "13:30",
+        "att": "Pranzo leggero in coppia"
+      },
+      {
+        "ora": "14:30 - 19:30",
+        "att": "Pomeriggio libero (uscita, relax)"
+      },
+      {
+        "ora": "20:00",
+        "att": "CENA: pizza/burger al ristorante"
+      },
+      {
+        "ora": "22:00 - 23:30",
+        "att": "Rientro, relax"
+      },
+      {
+        "ora": "23:30 - 00:00",
+        "att": "A letto"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "Corsa - Settimana 1",
+        "testo": "Obiettivo: ricominciare, base aerobica",
+        "items": [
+          "5 min camminata veloce (5,5 km/h)",
+          "2 min corsa (8-9 km/h) + 2 min camminata x 4-5 volte",
+          "Defaticamento 5 min camminata",
+          "Totale: ~25-30 min"
+        ]
+      },
+      {
+        "titolo": "Gestire il cheat meal senza sensi di colpa",
+        "items": [
+          "Mangia consapevolmente, mastica bene, gusta",
+          "Bevi acqua durante il pasto (non aspettare la fine)",
+          "Stop quando sei sazia, anche se rimane qualcosa",
+          "Domani si riprende normale, NO digiuno punitivo"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Domenica 24 maggio - Riposo dal compagno",
+    "sottotitolo": "Recupero post-cheat meal - reidratazione + verdure",
+    "pasti": [
+      {
+        "tipo": "Colazione (post-cheat, leggera)",
+        "items": [
+          "Yogurt greco classico (150 g) - la tua porzione settimanale di lattosio - + 25 g muesli + 1 pesca a fette + 1 cucchiaino miele. Cappuccino con bevanda d'avena. Tisana detox in piu (te verde + limone)."
+        ]
+      },
+      {
+        "tipo": "Spuntino mattina",
+        "items": [
+          "1 frutto + tisana"
+        ]
+      },
+      {
+        "tipo": "Pranzo (in coppia, leggero ma normale)",
+        "items": [
+          "Pollo al forno limone-rosmarino (110 g per lei) + insalata grande (lattuga, pomodoro, finocchio, sedano) + 60 g quinoa. Acqua a volontà."
+        ]
+      },
+      {
+        "tipo": "Spuntino",
+        "items": [
+          "1 frutto + 7 mandorle"
+        ]
+      },
+      {
+        "tipo": "Cena (leggera, drenante)",
+        "items": [
+          "Vellutata di verdure (zucchine, carote, sedano) + 1 uovo strapazzato + 1 fetta pane integrale. Dessert: tisana camomilla o zenzero."
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "09:30",
+        "att": "Sveglia tranquilla (dal compagno)"
+      },
+      {
+        "ora": "10:00",
+        "att": "Colazione lenta in coppia"
+      },
+      {
+        "ora": "11:00",
+        "att": "Passeggiata leggera 30-45 min (aiuta digestione cheat meal)"
+      },
+      {
+        "ora": "12:30",
+        "att": "Routine addominali leggera (10 min, opzionale)"
+      },
+      {
+        "ora": "13:00",
+        "att": "Pranzo in coppia"
+      },
+      {
+        "ora": "14:30 - 19:30",
+        "att": "Pomeriggio relax: lettura, divano, eventuale uscita"
+      },
+      {
+        "ora": "19:30",
+        "att": "Cena leggera"
+      },
+      {
+        "ora": "21:00",
+        "att": "Eventuale rientro a casa sua (preparazione settimana)"
+      },
+      {
+        "ora": "23:30 - 00:00",
+        "att": "A letto"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "Sport: leggero - recupero",
+        "items": [
+          "Passeggiata 30-45 min in coppia (priorità)",
+          "Addominali corti (8 min) se vuoi - opzionale",
+          "Niente cardio intenso - tappo per il recupero"
+        ]
+      },
+      {
+        "titolo": "Recupero post cheat meal",
+        "items": [
+          "Acqua + tisana drenante (2 L oggi)",
+          "Verdure a volontà - aiuta a smaltire il sodio",
+          "Sale ZERO aggiunto oggi",
+          "NIENTE digiuno o pasti saltati: si torna normali, semplicemente leggeri"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Lunedi 25 maggio",
+    "sottotitolo": "Spesa settimanale + addominali",
+    "pasti": [
+      {
+        "tipo": "Colazione",
+        "items": [
+          "Skyr senza lattosio (150 g) + overnight oats: 30 g avena ammollata in bevanda d'avena la sera prima + 1 cucchiaio chia + 1/2 mango. Cappuccino."
+        ]
+      },
+      {
+        "tipo": "Spuntino mattina",
+        "items": [
+          "1 pera + 7 mandorle"
+        ]
+      },
+      {
+        "tipo": "Pranzo (in ufficio - sandwich)",
+        "items": [
+          "1/2 baguette: prosciutto crudo + brie + insalata + un filo d'olio d'oliva. 1 frutto. Acqua."
+        ]
+      },
+      {
+        "tipo": "Spuntino pomeriggio",
+        "items": [
+          "1 skyr senza lattosio + 1 cucchiaino miele"
+        ]
+      },
+      {
+        "tipo": "Cena",
+        "items": [
+          "Tacchino alla piastra (110 g) + purea di cavolfiore (con olio d'oliva) + carote glassate. Dessert: 1 mela cotta con cannella OPPURE 1 quadratino cioccolato fondente."
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "07:45 - 08:00",
+        "att": "Sveglia, doccia, colazione"
+      },
+      {
+        "ora": "08:50 - 09:30",
+        "att": "Trasporti"
+      },
+      {
+        "ora": "09:30 - 17:30",
+        "att": "Lavoro"
+      },
+      {
+        "ora": "18:30",
+        "att": "Spesa Delhaize/Colruyt (40 min)"
+      },
+      {
+        "ora": "19:45",
+        "att": "Routine addominali (10 min)"
+      },
+      {
+        "ora": "20:00",
+        "att": "Cena"
+      },
+      {
+        "ora": "23:30 - 00:00",
+        "att": "A letto"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "Sport: Addominali standard (10 min)",
+        "items": [
+          "Crunch 3 x 15",
+          "Bicycle crunch 3 x 20",
+          "Plank 3 x 40 sec",
+          "Side plank 2 x 25 sec/lato"
+        ]
+      },
+      {
+        "titolo": "Faccende",
+        "items": [
+          "Spesa settimanale Delhaize o Colruyt",
+          "Sistemazione spesa"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Martedi 26 maggio - Seduta sportiva",
+    "sottotitolo": "Gambe e glutei progressione (45 min)",
+    "pasti": [
+      {
+        "tipo": "Colazione",
+        "items": [
+          "Porridge: 40 g avena con bevanda d'avena + 1 cucchiaio mandorle a lamelle + 1/2 mela + cannella. Cappuccino."
+        ]
+      },
+      {
+        "tipo": "Spuntino mattina",
+        "items": [
+          "1 banana"
+        ]
+      },
+      {
+        "tipo": "Pranzo (in ufficio - sandwich)",
+        "items": [
+          "1/2 baguette: prosciutto crudo + 1 uovo sodo affettato + insalata + pomodoro + un filo d'olio d'oliva. 1 frutto. Acqua. (Variante senza formaggio per limitare il lattosio.)"
+        ]
+      },
+      {
+        "tipo": "Spuntino pre-workout",
+        "items": [
+          "1 banana + 1 cucchiaino burro d'arachidi"
+        ]
+      },
+      {
+        "tipo": "Recupero immediato post-workout",
+        "items": [
+          "Shake proteico: 1 scoop in acqua (entro 30 min)"
+        ]
+      },
+      {
+        "tipo": "Cena post-workout",
+        "items": [
+          "Salmone (110 g) + 80 g pasta integrale + broccoli al vapore con olio d'oliva. Dessert: 2 quadratini di cioccolato fondente 85% + tisana."
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "07:45 - 08:00",
+        "att": "Sveglia, doccia, colazione"
+      },
+      {
+        "ora": "08:50 - 09:30",
+        "att": "Trasporti"
+      },
+      {
+        "ora": "09:30 - 17:30",
+        "att": "Lavoro"
+      },
+      {
+        "ora": "18:10",
+        "att": "Rientro, snack pre-workout"
+      },
+      {
+        "ora": "18:30",
+        "att": "Allenamento 40-45 min"
+      },
+      {
+        "ora": "19:15",
+        "att": "Doccia"
+      },
+      {
+        "ora": "19:45",
+        "att": "Cena"
+      },
+      {
+        "ora": "23:30 - 00:00",
+        "att": "A letto"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "Allenamento - Gambe/glutei",
+        "testo": "Riscaldamento 5 min: jumping jack, squat lenti, ponte",
+        "tabella": [
+          [
+            "Squat bulgaro",
+            "3 x 10/gamba",
+            "Piede su sedia"
+          ],
+          [
+            "Affondi camminati",
+            "4 x 12/gamba",
+            "Discesa lenta"
+          ],
+          [
+            "Ponte gluteo elastico",
+            "4 x 15",
+            "2 sec in alto"
+          ],
+          [
+            "Hip thrust su divano",
+            "3 x 15",
+            "Spingere coi talloni"
+          ],
+          [
+            "Calci dietro elastico",
+            "3 x 12/gamba",
+            "Isolare gluteo"
+          ],
+          [
+            "Side plank",
+            "3 x 25 sec/lato",
+            "Bacino in linea"
+          ]
+        ]
+      },
+      {
+        "testo": "Defaticamento 5 min stretching"
+      }
+    ]
+  },
+  {
+    "title": "Mercoledi 27 maggio - Lavoro da casa",
+    "sottotitolo": "1a lavatrice + pulizie zona 1 + preparazione pranzo giovedì",
+    "pasti": [
+      {
+        "tipo": "Colazione",
+        "items": [
+          "Skyr senza lattosio (150 g) + granola (25 g) + 1 banana + miele + cannella. Cappuccino."
+        ]
+      },
+      {
+        "tipo": "Spuntino mattina",
+        "items": [
+          "1 frutto + 7 nocciole"
+        ]
+      },
+      {
+        "tipo": "Pranzo (veloce, da casa)",
+        "items": [
+          "Frittata aperta: 2 uova + spinaci + feta (40 g) + 1 fetta pane integrale. Insalatina."
+        ]
+      },
+      {
+        "tipo": "Spuntino",
+        "items": [
+          "1 skyr senza lattosio + 1 cucchiaino miele"
+        ]
+      },
+      {
+        "tipo": "Cena",
+        "items": [
+          "Insalata di lenticchie (100 g cotte) + carote + cipolla rossa + prezzemolo + 1/2 avocado + olio d'oliva. Dessert: 1-2 quadratini cioccolato fondente 85% o tisana zenzero."
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "08:00",
+        "att": "Sveglia, colazione"
+      },
+      {
+        "ora": "09:00",
+        "att": "Avvio lavatrice n.1"
+      },
+      {
+        "ora": "09:30 - 12:30",
+        "att": "Lavoro"
+      },
+      {
+        "ora": "12:30 - 13:15",
+        "att": "Pranzo + stesura bucato"
+      },
+      {
+        "ora": "13:15 - 17:30",
+        "att": "Lavoro"
+      },
+      {
+        "ora": "17:30 - 18:30",
+        "att": "Pulizie zona 1: bagno + cucina (1h)"
+      },
+      {
+        "ora": "18:30",
+        "att": "Stretching dolce 10 min (gambe dolenti post-martedì)"
+      },
+      {
+        "ora": "19:00",
+        "att": "Ritiro bucato, sistemazione"
+      },
+      {
+        "ora": "19:30",
+        "att": "Preparazione pranzo giovedì (~10 min)"
+      },
+      {
+        "ora": "20:00",
+        "att": "Cena"
+      },
+      {
+        "ora": "23:30 - 00:00",
+        "att": "A letto"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "Sport: stretching o riposo",
+        "items": [
+          "Stretching dolce 10 min per le gambe (post-allenamento martedì)",
+          "Niente di intenso - giorno di recupero"
+        ]
+      },
+      {
+        "titolo": "Faccende: 1a lavatrice + pulizie zona 1",
+        "items": [
+          "Avvio lavatrice n.1 (colorati o intimo)",
+          "Stesura bucato a pranzo, ritiro la sera",
+          "Pulizie zona 1: bagno + cucina (1h)",
+          "Preparare insalata greca per giovedì (senza condire, salsa a parte)"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Giovedi 28 maggio - Seduta sportiva",
+    "sottotitolo": "Parte alta + core (45 min)",
+    "pasti": [
+      {
+        "tipo": "Colazione",
+        "items": [
+          "Smoothie bowl: 1 banana + 80 g mango surgelato + 150 g skyr senza lattosio + 20 g avena. Topping: granola + chia. Cappuccino."
+        ]
+      },
+      {
+        "tipo": "Spuntino mattina",
+        "items": [
+          "1 mela + 7 mandorle"
+        ]
+      },
+      {
+        "tipo": "Pranzo (in ufficio - portato da casa)",
+        "items": [
+          "Insalata greca: pomodori + finocchio + cipolla + 60 g feta + olive + olio e origano + 1 pita integrale piccola. Preparata mercoledì sera (l'avocado va aggiunto solo la mattina se si mette)."
+        ]
+      },
+      {
+        "tipo": "Spuntino pre-workout",
+        "items": [
+          "1 banana + 1 espresso"
+        ]
+      },
+      {
+        "tipo": "Recupero immediato post-workout",
+        "items": [
+          "Shake proteico: 1 scoop in acqua (entro 30 min)"
+        ]
+      },
+      {
+        "tipo": "Cena post-workout",
+        "items": [
+          "Manzo magro (sirloin, 100 g) alla piastra + 80 g patate al forno + spinaci saltati. Dessert: mug cake proteica al cacao o 2 quadratini cioccolato fondente."
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "07:45 - 08:00",
+        "att": "Sveglia, doccia, colazione"
+      },
+      {
+        "ora": "08:50 - 09:30",
+        "att": "Trasporti"
+      },
+      {
+        "ora": "09:30 - 17:30",
+        "att": "Lavoro"
+      },
+      {
+        "ora": "18:10",
+        "att": "Rientro, snack"
+      },
+      {
+        "ora": "18:30",
+        "att": "Allenamento 40-45 min"
+      },
+      {
+        "ora": "19:15",
+        "att": "Doccia, cena, relax"
+      },
+      {
+        "ora": "23:30 - 00:00",
+        "att": "A letto"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "Allenamento - Parte alta + core",
+        "testo": "Riscaldamento 5 min: jumping jack, mobilita spalle",
+        "tabella": [
+          [
+            "Push-up",
+            "4 x 10",
+            "Ginocchia o full"
+          ],
+          [
+            "Rematore elastico",
+            "4 x 15",
+            "Stringere scapole"
+          ],
+          [
+            "Pike push-up",
+            "3 x 8-10",
+            "Bacino alto"
+          ],
+          [
+            "Dip su sedia",
+            "3 x 12",
+            "Gomiti indietro"
+          ],
+          [
+            "Curl bicipiti elastico",
+            "3 x 15",
+            "Controllato"
+          ],
+          [
+            "Russian twist",
+            "3 x 20",
+            "Con bottiglia"
+          ],
+          [
+            "Plank",
+            "3 x 40 sec",
+            "Recupero 30 sec"
+          ]
+        ]
+      },
+      {
+        "testo": "Defaticamento 5 min stretching"
+      }
+    ]
+  },
+  {
+    "title": "Venerdi 29 maggio - Lavoro da casa",
+    "sottotitolo": "2a lavatrice + pulizie zona 2 - cena pizza fatta in casa",
+    "pasti": [
+      {
+        "tipo": "Colazione",
+        "items": [
+          "Pancake proteici (2 uova + 30 g avena + 1/2 banana) + 1/2 pesca + miele. Cappuccino."
+        ]
+      },
+      {
+        "tipo": "Spuntino mattina",
+        "items": [
+          "1 skyr senza lattosio + 1 cucchiaio granola"
+        ]
+      },
+      {
+        "tipo": "Pranzo (veloce, da casa)",
+        "items": [
+          "Quinoa (60 g cotta) + gamberi (90 g) saltati + zucchine + pomodorini + 1/2 avocado + olio e limone."
+        ]
+      },
+      {
+        "tipo": "Spuntino",
+        "items": [
+          "1 frutto + 1 quadratino cioccolato fondente"
+        ]
+      },
+      {
+        "tipo": "Cena (venerdi leggero, in coppia)",
+        "items": [
+          "Pizza fatta in casa con base integrale leggera: pomodoro + mozzarella light + verdure (zucchine, peperoni) + rucola fresca. 2-3 fette. Vino opzionale. Macedonia (lamponi, more, kiwi, mango, pesca)."
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "08:00",
+        "att": "Sveglia tranquilla, colazione"
+      },
+      {
+        "ora": "09:00",
+        "att": "Avvio lavatrice n.2"
+      },
+      {
+        "ora": "09:30 - 12:30",
+        "att": "Lavoro"
+      },
+      {
+        "ora": "12:30 - 13:15",
+        "att": "Pranzo + stesura bucato"
+      },
+      {
+        "ora": "13:15 - 17:30",
+        "att": "Lavoro"
+      },
+      {
+        "ora": "17:30 - 19:00",
+        "att": "Pulizie zona 2: salotto + camera + aspirapolvere (1h30)"
+      },
+      {
+        "ora": "19:00",
+        "att": "Routine addominali (10 min)"
+      },
+      {
+        "ora": "19:30",
+        "att": "Ritiro bucato, preparazione cena"
+      },
+      {
+        "ora": "20:00",
+        "att": "Cena in coppia"
+      },
+      {
+        "ora": "21:00 - 23:30",
+        "att": "Serata libera"
+      },
+      {
+        "ora": "23:30 - 00:00",
+        "att": "A letto"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "Sport: Addominali (10 min)",
+        "items": [
+          "Plank 3 x 40 sec",
+          "Crunch 3 x 15",
+          "Bicycle crunch 3 x 20",
+          "Side plank 2 x 25 sec/lato",
+          "Russian twist 3 x 20"
+        ]
+      },
+      {
+        "titolo": "Faccende: 2a lavatrice + pulizie zona 2",
+        "items": [
+          "Avvio lavatrice ore 9",
+          "Stesura a pranzo, ritiro la sera",
+          "Pulizie zona 2: salotto + camera + aspirapolvere"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Sabato 30 maggio - Corsa + cheat meal sera",
+    "sottotitolo": "Corsa W2: 28-32 min - Cena fuori al ristorante",
+    "pasti": [
+      {
+        "tipo": "Colazione (pre-corsa, leggera)",
+        "items": [
+          "1 fetta pane integrale + 1/2 avocado schiacciato + 1 cucchiaino miele + 1 banana. Cappuccino con bevanda d'avena."
+        ]
+      },
+      {
+        "tipo": "Recupero post-corsa",
+        "items": [
+          "1 skyr senza lattosio + 1 pesca a fette (no granola oggi)"
+        ]
+      },
+      {
+        "tipo": "Pranzo (leggero, in coppia)",
+        "items": [
+          "Insalatona: lattuga + 100 g tonno o pollo + finocchio a fette + pomodorini + 1/2 avocado + olio e limone. NO pane/pasta - spazio per la cena."
+        ]
+      },
+      {
+        "tipo": "Spuntino pomeriggio",
+        "items": [
+          "1 frutto + tisana"
+        ]
+      },
+      {
+        "tipo": "CENA - CHEAT MEAL al ristorante",
+        "items": [
+          "Pizza, burger o piatto a piacere. Goditi! Acqua + 1 bicchiere vino o birra. Scegli tra patatine extra E dessert: solo uno dei due."
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "09:30",
+        "att": "Sveglia tranquilla (weekend)"
+      },
+      {
+        "ora": "10:00",
+        "att": "Colazione leggera"
+      },
+      {
+        "ora": "11:00",
+        "att": "Corsa 28-32 min"
+      },
+      {
+        "ora": "11:45",
+        "att": "Doccia, recupero"
+      },
+      {
+        "ora": "12:30",
+        "att": "Trasferimento dal compagno"
+      },
+      {
+        "ora": "13:30",
+        "att": "Pranzo leggero in coppia"
+      },
+      {
+        "ora": "14:30 - 19:30",
+        "att": "Pomeriggio libero (uscita, relax)"
+      },
+      {
+        "ora": "20:00",
+        "att": "CENA: pizza/burger al ristorante"
+      },
+      {
+        "ora": "22:00 - 23:30",
+        "att": "Rientro, relax"
+      },
+      {
+        "ora": "23:30 - 00:00",
+        "att": "A letto"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "Corsa - Settimana 2",
+        "items": [
+          "5 min camminata veloce",
+          "3 min corsa (8-9 km/h) + 1,5 min camminata x 5",
+          "Defaticamento 5 min camminata",
+          "Totale: ~28-32 min"
+        ]
+      },
+      {
+        "titolo": "Cheat meal - regole d'oro",
+        "items": [
+          "Mangia consapevolmente, goditi",
+          "Acqua durante il pasto",
+          "Stop quando sazia",
+          "Domani normale - NO compensazioni eccessive"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Domenica 31 maggio - Riposo dal compagno",
+    "sottotitolo": "Recupero post-cheat meal - giornata leggera e drenante",
+    "pasti": [
+      {
+        "tipo": "Colazione (post-cheat)",
+        "items": [
+          "Yogurt greco classico (150 g) - tua porzione settimanale - + 25 g muesli + 1 pesca + miele. Cappuccino con bevanda d'avena. Tisana detox in piu."
+        ]
+      },
+      {
+        "tipo": "Spuntino mattina",
+        "items": [
+          "1 frutto + tisana"
+        ]
+      },
+      {
+        "tipo": "Pranzo (in coppia, leggero)",
+        "items": [
+          "Insalata grande con 90 g di pollo o pesce + verdure crude (finocchio, pomodorini, carote, ravanelli) + 1/2 avocado + 60 g riso integrale. NO pane oggi."
+        ]
+      },
+      {
+        "tipo": "Spuntino",
+        "items": [
+          "1 frutto"
+        ]
+      },
+      {
+        "tipo": "Cena (leggera, drenante)",
+        "items": [
+          "Zuppa di verdure (a volonta, ricca di acqua) + 1 uovo strapazzato + 1 fetta pane integrale. Dessert: tisana drenante."
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "09:30",
+        "att": "Sveglia tranquilla (dal compagno)"
+      },
+      {
+        "ora": "10:00",
+        "att": "Colazione lenta in coppia"
+      },
+      {
+        "ora": "11:00",
+        "att": "Passeggiata 30-45 min in coppia"
+      },
+      {
+        "ora": "12:30",
+        "att": "Addominali corti (10 min, opzionale)"
+      },
+      {
+        "ora": "13:00",
+        "att": "Pranzo in coppia"
+      },
+      {
+        "ora": "14:30 - 19:30",
+        "att": "Pomeriggio relax"
+      },
+      {
+        "ora": "19:30",
+        "att": "Cena leggera"
+      },
+      {
+        "ora": "21:00",
+        "att": "Eventuale rientro a casa sua"
+      },
+      {
+        "ora": "23:00 - 23:30",
+        "att": "A letto leggermente prima"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "Sport: leggero",
+        "items": [
+          "Passeggiata 30-45 min in coppia",
+          "Addominali corti opzionali",
+          "Niente cardio - giorno di recupero"
+        ]
+      },
+      {
+        "titolo": "Recupero post cheat meal",
+        "items": [
+          "2 L di acqua + tisane",
+          "Verdure a volontà",
+          "Zero sale aggiunto",
+          "NIENTE digiuno - solo leggerezza"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Lunedi 1 giugno",
+    "sottotitolo": "Spesa + addominali",
+    "pasti": [
+      {
+        "tipo": "Colazione",
+        "items": [
+          "Overnight oats: 30 g avena + 200 ml bevanda d'avena + 1 cucchiaio chia + 1/2 banana + 1/2 mango (preparato la sera prima). Cappuccino."
+        ]
+      },
+      {
+        "tipo": "Spuntino",
+        "items": [
+          "1 mela + 7 mandorle"
+        ]
+      },
+      {
+        "tipo": "Pranzo (in ufficio - sandwich)",
+        "items": [
+          "1/2 baguette: prosciutto crudo + 1 uovo sodo affettato + insalata + pomodoro + un filo d'olio d'oliva. 1 frutto. Acqua. (Settimana 3 senza brie per limitare il lattosio.)"
+        ]
+      },
+      {
+        "tipo": "Spuntino pomeriggio",
+        "items": [
+          "1 skyr senza lattosio + miele + 4 nocciole"
+        ]
+      },
+      {
+        "tipo": "Cena",
+        "items": [
+          "Pollo al curry (110 g) con latte di cocco light + 60 g riso basmati + verdure (peperoni, piselli). Dessert: 1 quadratino cioccolato fondente 85% + tisana."
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "07:45 - 08:00",
+        "att": "Sveglia, doccia, colazione"
+      },
+      {
+        "ora": "08:50 - 09:30",
+        "att": "Trasporti"
+      },
+      {
+        "ora": "09:30 - 17:30",
+        "att": "Lavoro"
+      },
+      {
+        "ora": "18:30",
+        "att": "Spesa Delhaize/Colruyt"
+      },
+      {
+        "ora": "19:45",
+        "att": "Routine addominali"
+      },
+      {
+        "ora": "20:00",
+        "att": "Cena"
+      },
+      {
+        "ora": "23:30 - 00:00",
+        "att": "A letto"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "Sport: Addominali standard (10 min)",
+        "items": [
+          "Plank 3 x 40 sec",
+          "Crunch 3 x 15",
+          "Bicycle crunch 3 x 20",
+          "Side plank 2 x 25 sec/lato",
+          "Russian twist 3 x 20"
+        ]
+      },
+      {
+        "titolo": "Faccende",
+        "items": [
+          "Spesa settimanale",
+          "Sistemazione spesa"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Martedi 2 giugno - Seduta sportiva",
+    "sottotitolo": "Gambe e glutei INTENSIVO (45 min)",
+    "pasti": [
+      {
+        "tipo": "Colazione",
+        "items": [
+          "Porridge (40 g avena con bevanda d'avena) + 1 cucchiaino burro di mandorle + 1 banana + cannella. Cappuccino."
+        ]
+      },
+      {
+        "tipo": "Spuntino",
+        "items": [
+          "1 pera"
+        ]
+      },
+      {
+        "tipo": "Pranzo (in ufficio - sandwich)",
+        "items": [
+          "1/2 baguette: omelette (2 uova) + prosciutto crudo + insalata + pomodoro + un filo d'olio d'oliva. 1 frutto. Acqua. (Senza formaggio.)"
+        ]
+      },
+      {
+        "tipo": "Spuntino pre-workout",
+        "items": [
+          "1 banana + 1 fetta biscottata con miele"
+        ]
+      },
+      {
+        "tipo": "Recupero immediato post-workout",
+        "items": [
+          "Shake proteico: 1 scoop in acqua (entro 30 min)"
+        ]
+      },
+      {
+        "tipo": "Cena post-workout",
+        "items": [
+          "Tonno fresco (110 g) alla piastra + 80 g patate dolci al forno + asparagi. Dessert: pannacotta senza lattosio con bevanda d'avena (porzione piccola)."
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "07:45 - 08:00",
+        "att": "Sveglia, doccia, colazione"
+      },
+      {
+        "ora": "09:30 - 17:30",
+        "att": "Lavoro"
+      },
+      {
+        "ora": "18:10",
+        "att": "Rientro, snack"
+      },
+      {
+        "ora": "18:30",
+        "att": "Allenamento intensivo"
+      },
+      {
+        "ora": "19:15",
+        "att": "Doccia, cena"
+      },
+      {
+        "ora": "23:30 - 00:00",
+        "att": "A letto"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "Allenamento - Gambe e glutei intensivo",
+        "tabella": [
+          [
+            "Jump squat",
+            "4 x 12",
+            "Esplosivo, atterraggio morbido"
+          ],
+          [
+            "Affondi indietro + ginocchio",
+            "3 x 10/gamba",
+            "Equilibrio + forza"
+          ],
+          [
+            "Hip thrust con peso",
+            "4 x 15",
+            "2 sec in alto"
+          ],
+          [
+            "Squat elastico + pulse",
+            "3 x 12+12 pulse",
+            "Bruciore garantito"
+          ],
+          [
+            "Stacchi 1 gamba",
+            "3 x 10/gamba",
+            "Discesa lenta"
+          ],
+          [
+            "Plank dinamico",
+            "3 x 40 sec",
+            "Bacino stabile"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Mercoledi 3 giugno - Lavoro da casa",
+    "sottotitolo": "1a lavatrice + pulizie zona 1 + preparazione pranzo giovedì",
+    "pasti": [
+      {
+        "tipo": "Colazione",
+        "items": [
+          "Skyr senza lattosio (150 g) + 25 g muesli + 1 banana + miele. Cappuccino."
+        ]
+      },
+      {
+        "tipo": "Spuntino",
+        "items": [
+          "1 mela + 7 mandorle"
+        ]
+      },
+      {
+        "tipo": "Pranzo (veloce, da casa)",
+        "items": [
+          "Avocado toast: 2 fette pane integrale + 1/2 avocado schiacciato + 2 uova in camicia + pomodorini + sale, pepe, olio."
+        ]
+      },
+      {
+        "tipo": "Spuntino",
+        "items": [
+          "1 skyr senza lattosio"
+        ]
+      },
+      {
+        "tipo": "Cena",
+        "items": [
+          "Pasta integrale (60 g) con vongole + prezzemolo + aglio + olio d'oliva. Insalata. Dessert: 1-2 quadratini cioccolato fondente."
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "08:00",
+        "att": "Sveglia, colazione"
+      },
+      {
+        "ora": "09:00",
+        "att": "Avvio lavatrice n.1"
+      },
+      {
+        "ora": "09:30 - 17:30",
+        "att": "Lavoro (pranzo + stesura bucato)"
+      },
+      {
+        "ora": "17:30 - 18:30",
+        "att": "Pulizie zona 1: bagno + cucina (1h)"
+      },
+      {
+        "ora": "18:30",
+        "att": "Stretching dolce (gambe dolenti)"
+      },
+      {
+        "ora": "19:00",
+        "att": "Ritiro bucato"
+      },
+      {
+        "ora": "19:30",
+        "att": "Preparazione bowl giovedì (~10 min)"
+      },
+      {
+        "ora": "20:00",
+        "att": "Cena"
+      },
+      {
+        "ora": "23:30 - 00:00",
+        "att": "A letto"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "Sport: riposo o stretching",
+        "items": [
+          "Stretching 10 min per le gambe (post-intensivo martedì)",
+          "Niente sforzi - le gambe ringraziano"
+        ]
+      },
+      {
+        "titolo": "Faccende: 1a lavatrice + pulizie zona 1",
+        "items": [
+          "1a lavatrice della settimana",
+          "Stesura, ritiro, sistemazione",
+          "Pulizie zona 1: bagno + cucina (1h)",
+          "Preparare bowl di orzo per giovedì (salsa di soia a parte)"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Giovedi 4 giugno - Seduta sportiva",
+    "sottotitolo": "HIIT TOTAL BODY (45 min)",
+    "pasti": [
+      {
+        "tipo": "Colazione",
+        "items": [
+          "Pancake proteici (2 uova + 30 g avena + 1/2 banana) + 1/2 pesca + miele. Cappuccino."
+        ]
+      },
+      {
+        "tipo": "Spuntino",
+        "items": [
+          "1 skyr senza lattosio + granola"
+        ]
+      },
+      {
+        "tipo": "Pranzo (in ufficio - portato da casa)",
+        "items": [
+          "Bowl: 60 g orzo + salmone affumicato (60 g) + edamame + carote + ravanelli + salsa di soia leggera + semi di sesamo. Preparato mercoledì sera, salsa a parte."
+        ]
+      },
+      {
+        "tipo": "Spuntino pre-workout",
+        "items": [
+          "1 banana + cioccolato fondente + 1 espresso"
+        ]
+      },
+      {
+        "tipo": "Recupero immediato post-workout",
+        "items": [
+          "Shake proteico: 1 scoop in acqua (entro 30 min)"
+        ]
+      },
+      {
+        "tipo": "Cena post-workout",
+        "items": [
+          "Petto di pollo (110 g) marinato (limone, paprika) + 60 g riso basmati + zucchine. Dessert: 2 quadratini cioccolato fondente 85% + tisana."
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "07:45 - 08:00",
+        "att": "Sveglia, doccia, colazione"
+      },
+      {
+        "ora": "09:30 - 17:30",
+        "att": "Lavoro"
+      },
+      {
+        "ora": "18:30",
+        "att": "HIIT total body"
+      },
+      {
+        "ora": "19:15",
+        "att": "Doccia, cena"
+      },
+      {
+        "ora": "23:30 - 00:00",
+        "att": "A letto"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "HIIT Total Body",
+        "testo": "Riscaldamento 5 min. Circuito: 45 sec / 15 sec recupero. 4 giri, pausa 1 min tra i giri.",
+        "tabella": [
+          [
+            "Burpees",
+            "45\"/15\" x 4",
+            "Adattare ritmo"
+          ],
+          [
+            "Squat + alzata sopra",
+            "45\"/15\" x 4",
+            "Movimento fluido"
+          ],
+          [
+            "Push-up",
+            "45\"/15\" x 4",
+            "Ginocchia se serve"
+          ],
+          [
+            "Mountain climber veloce",
+            "45\"/15\" x 4",
+            "Ritmo sostenuto"
+          ],
+          [
+            "Affondi alternati",
+            "45\"/15\" x 4",
+            "Senza pausa"
+          ],
+          [
+            "Plank tap spalla",
+            "45\"/15\" x 4",
+            "Bacino fermo"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Venerdi 5 giugno - Lavoro da casa",
+    "sottotitolo": "2a lavatrice + pulizie zona 2 + addominali",
+    "pasti": [
+      {
+        "tipo": "Colazione",
+        "items": [
+          "Skyr senza lattosio bowl: 150 g yogurt + 20 g granola + 1 banana + 1 cucchiaino burro d'arachidi + cannella. Cappuccino."
+        ]
+      },
+      {
+        "tipo": "Spuntino",
+        "items": [
+          "1 frutto + 7 mandorle"
+        ]
+      },
+      {
+        "tipo": "Pranzo (veloce, da casa)",
+        "items": [
+          "Insalatona: lattuga + 90 g pollo grigliato + mais + pomodorini + 1/2 avocado + uovo sodo + crostini integrali (20 g) + olio d'oliva."
+        ]
+      },
+      {
+        "tipo": "Spuntino",
+        "items": [
+          "1 skyr senza lattosio + miele"
+        ]
+      },
+      {
+        "tipo": "Cena (venerdi leggero)",
+        "items": [
+          "Vellutata di piselli e menta + 2 uova alla coque + 1 fetta pane integrale. Dessert: 1-2 quadratini cioccolato fondente 85%."
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "08:00",
+        "att": "Sveglia tranquilla, colazione"
+      },
+      {
+        "ora": "09:00",
+        "att": "Avvio lavatrice n.2"
+      },
+      {
+        "ora": "09:30 - 12:30",
+        "att": "Lavoro"
+      },
+      {
+        "ora": "12:30 - 13:15",
+        "att": "Pranzo + stesura bucato"
+      },
+      {
+        "ora": "13:15 - 17:30",
+        "att": "Lavoro"
+      },
+      {
+        "ora": "17:30 - 19:00",
+        "att": "Pulizie zona 2: salotto + camera + aspirapolvere (1h30)"
+      },
+      {
+        "ora": "19:00",
+        "att": "Routine addominali"
+      },
+      {
+        "ora": "19:30",
+        "att": "Ritiro bucato"
+      },
+      {
+        "ora": "19:45",
+        "att": "Cena tranquilla"
+      },
+      {
+        "ora": "20:30 - 23:30",
+        "att": "Serata libera"
+      },
+      {
+        "ora": "23:30 - 00:00",
+        "att": "A letto"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "Sport: Addominali standard (10 min)",
+        "items": [
+          "Plank 3 x 40 sec",
+          "Crunch 3 x 15",
+          "Bicycle crunch 3 x 20",
+          "Side plank 2 x 25 sec/lato"
+        ]
+      },
+      {
+        "titolo": "Faccende: 2a lavatrice + pulizie zona 2",
+        "items": [
+          "Avvio lavatrice ore 9",
+          "Stesura a pranzo, ritiro la sera",
+          "Pulizie zona 2: salotto + camera + aspirapolvere"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Sabato 6 giugno - Corsa + cheat meal sera",
+    "sottotitolo": "Corsa W3: 30-35 min - Cena fuori al ristorante",
+    "pasti": [
+      {
+        "tipo": "Colazione (pre-corsa, leggera)",
+        "items": [
+          "1 fetta pane integrale + 1 cucchiaino burro di mandorle + 1 cucchiaino miele + 1 banana. Cappuccino con bevanda d'avena."
+        ]
+      },
+      {
+        "tipo": "Recupero post-corsa",
+        "items": [
+          "1 skyr senza lattosio + 1/2 mango a cubetti"
+        ]
+      },
+      {
+        "tipo": "Pranzo (leggero, in coppia)",
+        "items": [
+          "Insalata: lattuga + 90 g pollo o pesce + finocchio a fette + pomodorini + 1/2 avocado + olio e limone. NO pane/pasta."
+        ]
+      },
+      {
+        "tipo": "Spuntino pomeriggio",
+        "items": [
+          "1 frutto + tisana"
+        ]
+      },
+      {
+        "tipo": "CENA - CHEAT MEAL al ristorante",
+        "items": [
+          "Pizza o burger. Acqua + 1 bicchiere vino/birra. Goditi, ultimo cheat prima della settimana di affûtage!"
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "09:30",
+        "att": "Sveglia tranquilla"
+      },
+      {
+        "ora": "10:00",
+        "att": "Colazione leggera"
+      },
+      {
+        "ora": "11:00",
+        "att": "Corsa 30-35 min"
+      },
+      {
+        "ora": "11:45",
+        "att": "Doccia, recupero"
+      },
+      {
+        "ora": "12:30",
+        "att": "Trasferimento dal compagno"
+      },
+      {
+        "ora": "13:30",
+        "att": "Pranzo leggero in coppia"
+      },
+      {
+        "ora": "14:30 - 19:30",
+        "att": "Pomeriggio libero"
+      },
+      {
+        "ora": "20:00",
+        "att": "CENA: pizza/burger al ristorante"
+      },
+      {
+        "ora": "22:00 - 23:30",
+        "att": "Rientro, relax"
+      },
+      {
+        "ora": "23:30 - 00:00",
+        "att": "A letto"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "Corsa - Settimana 3",
+        "items": [
+          "5 min camminata veloce",
+          "5 min corsa (8,5-9 km/h) + 1 min camminata x 4",
+          "Defaticamento 5 min",
+          "Totale: ~30-35 min"
+        ]
+      },
+      {
+        "titolo": "Cheat meal - ultimo prima dell'affûtage",
+        "items": [
+          "È l'ultimo cheat prima della partenza - goditi senza colpa",
+          "Acqua abbondante (limita il sodio già alto del ristorante)",
+          "Domani: tornare gradualmente all'affûtage",
+          "Lunedi: inizio settimana affûtage vera"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Domenica 7 giugno - Riposo dal compagno",
+    "sottotitolo": "Recupero post-cheat - transizione verso l'affûtage di domani",
+    "pasti": [
+      {
+        "tipo": "Colazione (post-cheat)",
+        "items": [
+          "Yogurt greco classico (150 g) - tua porzione settimanale - + 25 g muesli senza zucchero + 1 pesca. Cappuccino con bevanda d'avena. Tisana detox."
+        ]
+      },
+      {
+        "tipo": "Spuntino",
+        "items": [
+          "1 frutto + tisana"
+        ]
+      },
+      {
+        "tipo": "Pranzo (in coppia, transizione)",
+        "items": [
+          "Pesce o pollo (100 g) alla piastra + insalata grande + 60 g riso integrale + 1/2 avocado. Acqua a volontà, NO vino oggi (inizia già l'affûtage)."
+        ]
+      },
+      {
+        "tipo": "Spuntino",
+        "items": [
+          "1 frutto"
+        ]
+      },
+      {
+        "tipo": "Cena (già in modalità affûtage)",
+        "items": [
+          "Vellutata di zucchine + 2 uova alla coque + insalata di finocchio. Dessert: tisana zenzero-limone. NO sale aggiunto."
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "09:30",
+        "att": "Sveglia tranquilla (dal compagno)"
+      },
+      {
+        "ora": "10:00",
+        "att": "Colazione lenta in coppia"
+      },
+      {
+        "ora": "11:00",
+        "att": "Passeggiata 30-45 min"
+      },
+      {
+        "ora": "13:00",
+        "att": "Pranzo in coppia"
+      },
+      {
+        "ora": "14:30 - 19:30",
+        "att": "Pomeriggio relax + preparazione settimana affûtage"
+      },
+      {
+        "ora": "19:30",
+        "att": "Cena già leggera (affûtage)"
+      },
+      {
+        "ora": "21:00",
+        "att": "Rientro a casa (preparazione partenza)"
+      },
+      {
+        "ora": "23:00 - 23:30",
+        "att": "A letto leggermente prima"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "Sport: riposo totale",
+        "items": [
+          "Solo passeggiata in coppia",
+          "Niente cardio o forza - prepararsi all'affûtage"
+        ]
+      },
+      {
+        "titolo": "Preparazione settimana affûtage",
+        "items": [
+          "Tisana drenante x 2 oggi (te verde + zenzero + limone)",
+          "Controlla scorte: finocchio, sedano, zucchine, broccoli, te verde",
+          "Prepara verdure crude affettate per la settimana",
+          "Comincia già a ridurre il sale"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Lunedi 8 giugno",
+    "sottotitolo": "Inizio affûtage - spesa veloce + riposo",
+    "pasti": [
+      {
+        "tipo": "Colazione",
+        "items": [
+          "Skyr senza lattosio (150 g) + 25 g muesli senza zucchero + 1/2 banana + 1/2 mango. Cappuccino."
+        ]
+      },
+      {
+        "tipo": "Spuntino",
+        "items": [
+          "1 mela + 7 mandorle"
+        ]
+      },
+      {
+        "tipo": "Pranzo (in ufficio - sandwich leggero)",
+        "items": [
+          "1/2 baguette: omelette (1 uovo) + insalata abbondante + pochissimo olio d'oliva. 1 frutto. Acqua a volontà."
+        ]
+      },
+      {
+        "tipo": "Spuntino",
+        "items": [
+          "1 skyr senza lattosio + 1 cucchiaino miele"
+        ]
+      },
+      {
+        "tipo": "Cena (no carboidrati amidacei)",
+        "items": [
+          "Filetto di merluzzo al vapore (120 g) + verdure al vapore (zucchine, broccoli, carote) + olio d'oliva crudo. Finocchio crudo a fette con limone. Dessert: tisana zenzero-limone (drenante)."
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "07:45 - 08:00",
+        "att": "Sveglia, doccia, colazione"
+      },
+      {
+        "ora": "09:30 - 17:30",
+        "att": "Lavoro"
+      },
+      {
+        "ora": "18:30",
+        "att": "Spesa veloce (frutta, verdura fresca)"
+      },
+      {
+        "ora": "19:30",
+        "att": "Passeggiata 15-20 min"
+      },
+      {
+        "ora": "20:00",
+        "att": "Cena leggera"
+      },
+      {
+        "ora": "23:00 - 23:30",
+        "att": "A letto presto (riposo!)"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "Sport: niente di intenso",
+        "items": [
+          "Solo passeggiata 15-20 min dopo lavoro",
+          "Stretching dolce 10 min se vuoi",
+          "FOCUS SUL RIPOSO - sonno minimo 8h"
+        ]
+      },
+      {
+        "titolo": "Faccende minime",
+        "items": [
+          "Spesa veloce per la settimana corta",
+          "Tisana drenante: te verde + zenzero + limone"
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Martedi 9 giugno - Ultima seduta",
+    "sottotitolo": "Full body BREVE ma intenso (30 min)",
+    "pasti": [
+      {
+        "tipo": "Colazione",
+        "items": [
+          "Porridge (40 g avena) cotto con bevanda d'avena + 1/2 banana + cannella. Cappuccino."
+        ]
+      },
+      {
+        "tipo": "Spuntino",
+        "items": [
+          "1 pera"
+        ]
+      },
+      {
+        "tipo": "Pranzo (in ufficio - sandwich leggero)",
+        "items": [
+          "1/2 baguette: omelette (1 uovo) + insalata abbondante + pochissimo olio d'oliva. 1 frutto. Acqua a volontà."
+        ]
+      },
+      {
+        "tipo": "Spuntino pre-workout",
+        "items": [
+          "1 banana"
+        ]
+      },
+      {
+        "tipo": "Recupero immediato post-workout",
+        "items": [
+          "Shake proteico: 1 scoop in acqua (no latte oggi, affûtage). Aiuta a mantenere il tono muscolare."
+        ]
+      },
+      {
+        "tipo": "Cena (proteine + verdure)",
+        "items": [
+          "Petto di pollo (120 g) alla piastra con erbe + zucchine grigliate + insalata mista. Dessert: tisana zenzero-limone (drenante)."
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "07:45 - 08:00",
+        "att": "Sveglia, doccia, colazione"
+      },
+      {
+        "ora": "09:30 - 17:30",
+        "att": "Lavoro"
+      },
+      {
+        "ora": "18:30",
+        "att": "Full body breve (30 min)"
+      },
+      {
+        "ora": "19:15",
+        "att": "Stretching lungo (8-10 min)"
+      },
+      {
+        "ora": "19:30",
+        "att": "Doccia, cena"
+      },
+      {
+        "ora": "23:30 - 00:00",
+        "att": "A letto"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "Full body breve - mantenere il tono",
+        "testo": "Riscaldamento 3-4 min. Circuito: 30 sec / 30 sec recupero. 3 giri.",
+        "tabella": [
+          [
+            "Squat corpo libero",
+            "3 x 30 sec",
+            "Lenti, controllati"
+          ],
+          [
+            "Push-up",
+            "3 x 30 sec",
+            "Adattare livello"
+          ],
+          [
+            "Affondi alternati",
+            "3 x 30 sec",
+            "Senza pausa"
+          ],
+          [
+            "Rematore elastico",
+            "3 x 30 sec",
+            "Schiena dritta"
+          ],
+          [
+            "Ponte gluteo",
+            "3 x 30 sec",
+            "Stringere in alto"
+          ],
+          [
+            "Plank",
+            "3 x 30 sec",
+            "Stabile"
+          ]
+        ]
+      },
+      {
+        "testo": "Stretching lungo 8-10 min - importante per scaricare tensioni prima del viaggio"
+      }
+    ]
+  },
+  {
+    "title": "Mercoledi 10 giugno - VIGILIA PARTENZA",
+    "sottotitolo": "Ultimo giorno - riposo + valigia",
+    "pasti": [
+      {
+        "tipo": "Colazione",
+        "items": [
+          "Skyr senza lattosio (150 g) + 25 g muesli + 1 pesca. Cappuccino."
+        ]
+      },
+      {
+        "tipo": "Spuntino",
+        "items": [
+          "1 mela"
+        ]
+      },
+      {
+        "tipo": "Pranzo (leggero)",
+        "items": [
+          "Insalata: lattuga + 90 g pollo + 50 g riso basmati + pomodorini + finocchio + 1/2 avocado + olio e limone."
+        ]
+      },
+      {
+        "tipo": "Spuntino",
+        "items": [
+          "1 skyr senza lattosio + 1/2 mango a cubetti"
+        ]
+      },
+      {
+        "tipo": "Cena (super leggera, ottima per la pelle)",
+        "items": [
+          "Vellutata di zucchine + 2 uova alla coque + insalata di finocchio. Dessert: tisana camomilla o zenzero-limone. NO sale aggiunto!"
+        ]
+      }
+    ],
+    "giornata": [
+      {
+        "ora": "07:45 - 08:00",
+        "att": "Sveglia, colazione"
+      },
+      {
+        "ora": "09:30 - 17:30",
+        "att": "Lavoro"
+      },
+      {
+        "ora": "18:30",
+        "att": "Stretching 15 min"
+      },
+      {
+        "ora": "19:00",
+        "att": "Passeggiata 30 min con il compagno"
+      },
+      {
+        "ora": "19:30 - 21:00",
+        "att": "Preparazione valigia con calma"
+      },
+      {
+        "ora": "21:00",
+        "att": "Cena leggera"
+      },
+      {
+        "ora": "23:00",
+        "att": "A letto - riposo prima del viaggio!"
+      }
+    ],
+    "sportEFaccende": [
+      {
+        "titolo": "Sport: solo dolcezza",
+        "items": [
+          "Stretching 15 min",
+          "Passeggiata 30 min con il compagno",
+          "Niente sforzi, il corpo deve essere riposato"
+        ]
+      },
+      {
+        "titolo": "Preparazione partenza",
+        "items": [
+          "Preparare valigia con calma",
+          "Foto finale (di fronte + profilo) per confronto con lunedi 18 maggio",
+          "Misure finali: girovita, fianchi, coscia",
+          "Tisana drenante prima di dormire"
+        ]
+      }
+    ]
+  }
+];
+
+// Ricette del programma - dettaglio cliccabile
+const RICETTE = [
+  {
+    id: "porridge-proteico",
+    nome: "Porridge proteico",
+    tag: "colazione",
+    tempo: "10 min",
+    porzioni: 1,
+    ingredienti: [
+      "40 g fiocchi d'avena",
+      "200 ml bevanda d'avena (o di mandorla)",
+      "1/2 banana a fette",
+      "1 cucchiaino burro d'arachidi",
+      "1/2 scoop proteine in polvere (vaniglia o neutra) — opzionale",
+      "Cannella in polvere",
+      "1 cucchiaino miele (facoltativo)"
+    ],
+    preparazione: [
+      "Scalda la bevanda d'avena in un pentolino a fuoco medio.",
+      "Aggiungi i fiocchi d'avena e mescola continuamente per 4-5 min.",
+      "Quando ha la consistenza cremosa, togli dal fuoco.",
+      "Aspetta 1 min, poi aggiungi le proteine in polvere e mescola (non cuocerle).",
+      "Versa nella ciotola, aggiungi banana, burro d'arachidi, cannella e miele.",
+      "Servi caldo."
+    ],
+    note: "Le proteine in polvere si aggiungono dopo la cottura per non denaturarle troppo."
+  },
+  {
+    id: "smoothie-bowl-mango",
+    nome: "Smoothie bowl al mango",
+    tag: "colazione",
+    tempo: "5 min",
+    porzioni: 1,
+    ingredienti: [
+      "1 banana surgelata (preferibilmente)",
+      "80 g mango surgelato a cubetti",
+      "150 g skyr senza lattosio",
+      "20 g fiocchi d'avena",
+      "1 cucchiaino burro di mandorle",
+      "1/2 scoop proteine in polvere — opzionale",
+      "15 g granola senza zucchero (topping)"
+    ],
+    preparazione: [
+      "Metti banana, mango, skyr, avena, burro di mandorle e proteine nel frullatore.",
+      "Frulla finché ottieni una crema spessa (aggiungi un po' di bevanda d'avena se troppo denso).",
+      "Versa nella ciotola.",
+      "Topping: 15 g granola e una spolverata di cannella."
+    ],
+    note: "Più la banana è surgelata, più la crema sara densa come un gelato."
+  },
+  {
+    id: "pancake-proteici",
+    nome: "Pancake proteici",
+    tag: "colazione",
+    tempo: "15 min",
+    porzioni: 1,
+    ingredienti: [
+      "2 uova",
+      "30 g fiocchi d'avena",
+      "1/2 banana matura",
+      "1/2 scoop proteine in polvere — opzionale",
+      "Cannella",
+      "Miele o 1/2 pesca a fette (topping)"
+    ],
+    preparazione: [
+      "Frulla insieme uova, avena, banana, proteine e cannella fino a ottenere una pastella omogenea.",
+      "Scalda una padella antiaderente a fuoco medio (poco olio o nulla).",
+      "Versa porzioni di pastella (3-4 pancake piccoli).",
+      "Cuoci 2 min per lato finché dorate.",
+      "Servi con miele e pesca a fette."
+    ],
+    note: "Si possono preparare il giorno prima e scaldare 30 sec al microonde."
+  },
+  {
+    id: "frittata-verdure",
+    nome: "Frittata con verdure",
+    tag: "pranzo-rapido",
+    tempo: "15 min",
+    porzioni: 1,
+    ingredienti: [
+      "2 uova",
+      "1 zucchina piccola",
+      "1/2 cipolla",
+      "Olio d'oliva (1 cucchiaino)",
+      "Sale, pepe",
+      "Erbe aromatiche (basilico o prezzemolo)",
+      "50 g pane integrale (a parte)"
+    ],
+    preparazione: [
+      "Taglia la zucchina a rondelle sottili e la cipolla a julienne.",
+      "Saltare le verdure in padella con poco olio per 5-6 min.",
+      "Sbatti le uova con sale, pepe ed erbe.",
+      "Versa le uova sulle verdure, abbassa la fiamma.",
+      "Cuoci 2-3 min, gira con un piatto, cuoci altri 2 min.",
+      "Servi con pane integrale e insalata mista."
+    ],
+    note: "Versione frittata aperta = come una torta salata, senza girarla. Si finisce sotto il grill 1 min."
+  },
+  {
+    id: "buddha-bowl-ufficio",
+    nome: "Buddha bowl da portare in ufficio",
+    tag: "pranzo-ufficio",
+    tempo: "20 min (sera prima)",
+    porzioni: 1,
+    ingredienti: [
+      "60 g farro o orzo perlato",
+      "60 g ceci cotti (da barattolo, sciacquati)",
+      "1 carota a julienne",
+      "Una manciata di spinacini",
+      "1/2 avocado",
+      "1 cucchiaio di tahin",
+      "Succo di 1/2 limone",
+      "Sale, pepe, paprika"
+    ],
+    preparazione: [
+      "Cuoci farro o orzo come da istruzioni (15-20 min in acqua salata), scola e raffredda.",
+      "Sciacqua i ceci.",
+      "Taglia carota e avocado (avocado solo la mattina!).",
+      "Mescola in un contenitore ermetico: cereale, ceci, carota, spinacini.",
+      "In un barattolino a parte: tahin + limone + un po' d'acqua + sale = salsa.",
+      "La mattina aggiungi avocado e salsa al momento di mangiare."
+    ],
+    note: "L'avocado annerisce, quindi va aggiunto solo prima del pasto. Tutto il resto si prepara la sera."
+  },
+  {
+    id: "salmone-riso-broccoli",
+    nome: "Salmone con riso e broccoli",
+    tag: "cena",
+    tempo: "20 min",
+    porzioni: 1,
+    ingredienti: [
+      "110 g filetto di salmone",
+      "60 g riso basmati (peso secco)",
+      "150 g broccoli (1 piccolo cespo)",
+      "1 limone",
+      "Olio d'oliva, sale, pepe",
+      "Aneto o prezzemolo"
+    ],
+    preparazione: [
+      "Metti il riso a cuocere in acqua salata (12 min).",
+      "Nel frattempo, taglia i broccoli a cimette e cuocili al vapore 7-8 min.",
+      "Salmone: condisci con succo di mezzo limone, sale, pepe.",
+      "Cuoci in padella antiaderente 4 min lato pelle + 2 min altro lato (o al forno 12 min a 200°C).",
+      "Servi: riso, broccoli con un filo d'olio, salmone con aneto."
+    ],
+    note: "Per la cena post-workout: prepara il riso in anticipo. Il salmone è veloce."
+  },
+  {
+    id: "pollo-piastra",
+    nome: "Pollo alla piastra con patate al forno",
+    tag: "cena",
+    tempo: "30 min",
+    porzioni: 1,
+    ingredienti: [
+      "110 g petto di pollo",
+      "80 g patate (1 patata media)",
+      "Rosmarino fresco",
+      "1 zucchina",
+      "Olio d'oliva, sale, pepe, aglio"
+    ],
+    preparazione: [
+      "Forno a 200°C.",
+      "Taglia le patate a spicchi, mescola con olio, sale, rosmarino e 1 spicchio d'aglio schiacciato.",
+      "Inforna le patate per 25 min (gira a meta).",
+      "Taglia la zucchina a rondelle e grigliale in padella con poco olio 5-6 min.",
+      "Pollo: batti leggermente il petto, condisci con sale e pepe.",
+      "Cuoci in padella antiaderente 4 min per lato.",
+      "Servi: pollo, patate, zucchine."
+    ],
+    note: "Le patate al forno vanno preparate per prime perché ci mettono di più."
+  },
+  {
+    id: "insalata-lenticchie",
+    nome: "Insalata di lenticchie",
+    tag: "cena",
+    tempo: "10 min (con lenticchie già cotte)",
+    porzioni: 1,
+    ingredienti: [
+      "100 g lenticchie cotte (1/2 barattolo)",
+      "1 carota a cubetti",
+      "1/4 cipolla rossa a julienne",
+      "1/2 avocado",
+      "Prezzemolo fresco",
+      "Olio d'oliva, succo di limone, sale, pepe"
+    ],
+    preparazione: [
+      "Sciacqua le lenticchie sotto acqua fredda.",
+      "Taglia carota, cipolla, avocado e trità il prezzemolo.",
+      "Mescola tutto in una ciotola.",
+      "Condisci con olio, limone, sale e pepe.",
+      "Lascia riposare 5 min prima di servire (i sapori si amalgamano)."
+    ],
+    note: "Si conserva 2-3 giorni in frigo. Ottima anche per il pranzo del giorno dopo."
+  },
+  {
+    id: "mug-cake-proteica",
+    nome: "Mug cake proteica al cacao",
+    tag: "dessert",
+    tempo: "5 min",
+    porzioni: 1,
+    ingredienti: [
+      "1/2 scoop proteine in polvere (al cacao o vaniglia)",
+      "1 cucchiaio cacao amaro in polvere",
+      "60 ml bevanda d'avena",
+      "1 cucchiaino dolcificante (eritritolo, stevia o miele)",
+      "1/2 cucchiaino lievito",
+      "Pizzico di sale"
+    ],
+    preparazione: [
+      "In una tazza, mescola proteine, cacao, lievito e sale.",
+      "Aggiungi bevanda d'avena e dolcificante. Mescola bene fino a ottenere una crema.",
+      "Cuoci al microonde 60 secondi a potenza piena.",
+      "Aspetta 30 sec prima di mangiarla (continua a cuocere)."
+    ],
+    note: "Si può aggiungere 1 quadratino di cioccolato fondente al centro prima di cuocere = effetto fondente."
+  },
+  {
+    id: "vellutata-zucchine",
+    nome: "Vellutata di zucchine (cena leggera)",
+    tag: "cena",
+    tempo: "20 min",
+    porzioni: 1,
+    ingredienti: [
+      "2 zucchine medie",
+      "1/2 patata piccola (per cremosità)",
+      "1/2 cipolla",
+      "1 spicchio d'aglio",
+      "Brodo vegetale (300 ml) o acqua",
+      "Olio d'oliva, sale, pepe",
+      "Basilico fresco"
+    ],
+    preparazione: [
+      "Taglia cipolla e aglio, fai soffriggere con poco olio in pentola.",
+      "Aggiungi zucchine e patata a pezzi, mescola 2 min.",
+      "Versa il brodo, porta a bollore, cuoci 15 min.",
+      "Frulla con un frullatore a immersione fino a ottenere una vellutata liscia.",
+      "Aggiusta di sale e pepe, servi con basilico fresco."
+    ],
+    note: "Perfetta per la cena della vigilia partenza: leggera, drenante, ottima per la pelle."
+  }
+];
+
+
+// ============== APP LOGIC ==============
+/* =========================================================
+   APP LOGIC - Programma fitness
+   ========================================================= */
+
+// ---------- DATE UTILITIES ----------
+const MONTHS_IT = ['gennaio','febbraio','marzo','aprile','maggio','giugno','luglio','agosto','settembre','ottobre','novembre','dicembre'];
+const DAYS_IT = ['Domenica','Lunedi','Martedi','Mercoledi','Giovedi','Venerdi','Sabato'];
+const DAYS_SHORT = ['D','L','M','M','G','V','S'];
+
+const START_DATE = new Date(2026, 4, 18); // mese 0-indexed → 4 = maggio
+
+function dateForIndex(i) {
+  const d = new Date(START_DATE);
+  d.setDate(d.getDate() + i);
+  return d;
+}
+
+function formatDateKey(d) {
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
+function todayIndex() {
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const start = new Date(START_DATE);
+  start.setHours(0,0,0,0);
+  const diff = Math.floor((today - start) / (1000*60*60*24));
+  if (diff < 0) return 0;
+  if (diff >= DAYS.length) return DAYS.length - 1;
+  return diff;
+}
+
+// ---------- STATE ----------
+const STORAGE_KEY = 'programma_v9_state';
+let state = {
+  currentDay: 0,
+  theme: 'light',
+  checks: {},      // { "day-0-meal-colazione": true, ... }
+  exercises: {},   // { "day-0-ex-0": true, ... }
+};
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      Object.assign(state, parsed);
+    }
+  } catch (e) { console.warn('Cannot load state', e); }
+  
+  // Initial day = today if in range, else 0
+  if (state.currentDay === undefined || state.currentDay === null) {
+    state.currentDay = todayIndex();
+  }
+}
+
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      currentDay: state.currentDay,
+      theme: state.theme,
+      checks: state.checks,
+      exercises: state.exercises
+    }));
+  } catch (e) { console.warn('Cannot save state', e); }
+}
+
+// ---------- ICONS ----------
+const ICONS = {
+  sun: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>',
+  moon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>',
+  check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+  close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
+  play: '<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>',
+  pause: '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>',
+  reset: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>',
+  timer: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="10" y1="2" x2="14" y2="2"/></svg>',
+  home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>',
+  calendar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
+  stats: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
+  book: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>'
+};
+
+// ---------- DAY TYPE LABEL ----------
+function dayTypeLabel(type) {
+  const labels = {
+    office: 'Ufficio',
+    home: 'Telelavoro',
+    sport: 'Sport',
+    running: 'Corsa',
+    rest: 'Riposo'
+  };
+  return labels[type] || '';
+}
+
+function detectDayType(day) {
+  if (day.type) return day.type;
+  // Heuristic from title/subtitle if not set
+  const t = (day.title + ' ' + (day.sottotitolo||'')).toLowerCase();
+  if (t.includes('sportiva') || t.includes('sport:')) return 'sport';
+  if (t.includes('corsa') || t.includes('cheat')) return 'running';
+  if (t.includes('riposo') || t.includes('domenica')) return 'rest';
+  if (t.includes('lavoro da casa')) return 'home';
+  return 'office';
+}
+
+// ---------- RECIPE DETECTION IN TEXT ----------
+function annotateRecipes(text) {
+  let result = text;
+  RICETTE.forEach(r => {
+    const variants = [];
+    // Add main name (case-insensitive)
+    const re = new RegExp('\\b(' + r.nome.replace(/[.*+?^${}()|[\]\\]/g, '\\// APP_LOGIC_PLACEHOLDER') + ')\\b', 'i');
+    if (re.test(result)) {
+      result = result.replace(re, (m) => `<span class="recipe-link" data-recipe="${r.id}">${m}</span>`);
+    }
+  });
+  // Add custom triggers for common foods
+  const triggers = [
+    { match: /porridge/i, id: 'porridge-proteico' },
+    { match: /smoothie bowl/i, id: 'smoothie-bowl-mango' },
+    { match: /pancake protei/i, id: 'pancake-proteici' },
+    { match: /frittata/i, id: 'frittata-verdure' },
+    { match: /buddha bowl/i, id: 'buddha-bowl-ufficio' },
+    { match: /mug cake/i, id: 'mug-cake-proteica' },
+    { match: /insalata di lenticchie/i, id: 'insalata-lenticchie' },
+    { match: /vellutata di zucchine/i, id: 'vellutata-zucchine' }
+  ];
+  triggers.forEach(t => {
+    if (result.includes('class="recipe-link"')) return; // already annotated
+    if (t.match.test(result)) {
+      result = result.replace(t.match, (m) => `<span class="recipe-link" data-recipe="${t.id}">${m}</span>`);
+    }
+  });
+  return result;
+}
+
+// ---------- RENDER OGGI VIEW ----------
+function renderOggi() {
+  const idx = state.currentDay;
+  const day = DAYS[idx];
+  const date = dateForIndex(idx);
+  const dayType = detectDayType(day);
+  
+  // Progress for current day
+  const dayProgress = computeDayProgress(idx);
+  
+  let html = `
+    <div class="progress-section">
+      <div class="progress-label">
+        <span>Progresso del giorno</span>
+        <span class="progress-percent">${dayProgress}%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${dayProgress}%"></div></div>
+    </div>
+    
+    <div class="day-header">
+      <div class="day-nav">
+        <button class="nav-arrow" id="prev-day" ${idx === 0 ? 'disabled' : ''}>‹</button>
+        <div class="day-pill">Giorno ${idx + 1} di ${DAYS.length} · Settimana ${getWeek(idx)}</div>
+        <button class="nav-arrow" id="next-day" ${idx === DAYS.length - 1 ? 'disabled' : ''}>›</button>
+      </div>
+      <div class="day-type-badge type-${dayType}">${dayTypeLabel(dayType)}</div>
+      <h1 class="day-title">${formatDayTitle(day.title)}</h1>
+      ${day.sottotitolo ? `<div class="day-subtitle">${day.sottotitolo}</div>` : ''}
+    </div>
+  `;
+  
+  // ALIMENTAZIONE
+  html += `
+    <div class="section">
+      <h2 class="section-title">Alimentazione</h2>
+  `;
+  day.pasti.forEach((pasto, pi) => {
+    html += `<div class="card">
+      <div class="card-label">${pasto.tipo}</div>`;
+    pasto.items.forEach((item, ii) => {
+      const key = `d${idx}-m${pi}-${ii}`;
+      const checked = state.checks[key] ? 'checked' : '';
+      html += `<div class="check-item ${checked}" data-check="${key}">
+        <div class="checkbox">${ICONS.check}</div>
+        <div class="check-text">${annotateRecipes(item)}</div>
+      </div>`;
+    });
+    html += `</div>`;
+  });
+  html += `</div>`;
+  
+  // GIORNATA TIPO
+  html += `
+    <div class="section">
+      <h2 class="section-title">Giornata tipo</h2>
+      <div class="card">
+  `;
+  day.giornata.forEach((g, gi) => {
+    const key = `d${idx}-g-${gi}`;
+    const checked = state.checks[key] ? 'checked' : '';
+    html += `<div class="check-item ${checked}" data-check="${key}">
+      <div class="checkbox">${ICONS.check}</div>
+      <div class="check-text"><span class="check-time">${g.ora}</span>${g.att}</div>
+    </div>`;
+  });
+  html += `</div></div>`;
+  
+  // SPORT E FACCENDE
+  html += `<div class="section">
+    <h2 class="section-title">Sport &amp; faccende</h2>`;
+  
+  day.sportEFaccende.forEach((sec, si) => {
+    // If section has a tabella → workout
+    if (sec.tabella) {
+      html += renderWorkoutCard(sec, idx, si);
+    } else if (sec.titolo && (sec.titolo.toLowerCase().includes('sport') || sec.titolo.toLowerCase().includes('allenamento') || sec.titolo.toLowerCase().includes('corsa') || sec.titolo.toLowerCase().includes('addominali') || sec.titolo.toLowerCase().includes('hiit') || sec.titolo.toLowerCase().includes('full body'))) {
+      html += renderWorkoutCard(sec, idx, si);
+    } else {
+      // Faccende
+      html += `<div class="card">`;
+      if (sec.titolo) html += `<div class="card-label">${sec.titolo}</div>`;
+      if (sec.testo) html += `<div style="font-size:13px;color:var(--ink-soft);margin-bottom:8px;font-style:italic;">${sec.testo}</div>`;
+      if (sec.items) {
+        sec.items.forEach((item, ii) => {
+          const key = `d${idx}-s${si}-${ii}`;
+          const checked = state.checks[key] ? 'checked' : '';
+          html += `<div class="check-item ${checked}" data-check="${key}">
+            <div class="checkbox">${ICONS.check}</div>
+            <div class="check-text">${item}</div>
+          </div>`;
+        });
+      }
+      html += `</div>`;
+    }
+  });
+  html += `</div>`;
+  
+  document.getElementById('view-oggi').innerHTML = html;
+  attachOggiHandlers();
+}
+
+function renderWorkoutCard(sec, idx, si) {
+  let html = `<div class="workout-card">`;
+  html += `<h3 class="workout-title">${sec.titolo || 'Allenamento'}</h3>`;
+  if (sec.testo) html += `<div class="workout-meta">${sec.testo}</div>`;
+  
+  // Build exercise list
+  const exercises = [];
+  if (sec.tabella) {
+    // Format: [["name","reps","note"], ...]
+    sec.tabella.forEach(row => {
+      exercises.push({ name: row[0], reps: row[1], note: row[2] });
+    });
+  } else if (sec.items) {
+    sec.items.forEach(item => {
+      // Try to split "Name N x R"
+      const match = item.match(/^(.+?)\s+(\d+\s*x\s*[\d\s\-\/a-zA-Z]+)$/);
+      if (match) {
+        exercises.push({ name: match[1].trim(), reps: match[2].trim() });
+      } else {
+        exercises.push({ name: item, reps: '' });
+      }
+    });
+  }
+  
+  html += `<ul class="exercise-list">`;
+  exercises.forEach((ex, ei) => {
+    const key = `d${idx}-ex${si}-${ei}`;
+    const done = state.exercises[key] ? 'done' : '';
+    html += `<li class="exercise-item ${done}" data-exercise="${key}">
+      <div class="exercise-checkbox">${ICONS.check}</div>
+      <div style="flex:1">
+        <div class="exercise-name">${ex.name}</div>
+        ${ex.note ? `<div class="exercise-note">${ex.note}</div>` : ''}
+      </div>
+      ${ex.reps ? `<div class="exercise-reps">${ex.reps}</div>` : ''}
+    </li>`;
+  });
+  html += `</ul>`;
+  
+  // Detect if hiit / circuit → show timer button
+  const t = (sec.titolo || '').toLowerCase();
+  if (t.includes('hiit') || t.includes('circuito') || t.includes('full body') || (sec.testo && /\d+\s*sec.*\/\s*\d+\s*sec/.test(sec.testo))) {
+    // Try to parse work/rest from testo
+    let work = 40, rest = 20, rounds = 4;
+    if (sec.testo) {
+      const m1 = sec.testo.match(/(\d+)\s*sec.*?(\d+)\s*sec/i);
+      if (m1) { work = parseInt(m1[1]); rest = parseInt(m1[2]); }
+      const m2 = sec.testo.match(/(\d+)\s*giri/i);
+      if (m2) rounds = parseInt(m2[1]);
+    }
+    html += `<button class="timer-btn" data-open-timer="${work}-${rest}-${rounds}-${exercises.length || 5}">
+      ${ICONS.timer} Avvia timer (${work}s/${rest}s × ${rounds})
+    </button>`;
+  } else if (t.includes('corsa')) {
+    // simple stopwatch for run
+    html += `<button class="timer-btn" data-open-timer="stopwatch">
+      ${ICONS.timer} Avvia cronometro
+    </button>`;
+  } else {
+    // Generic timer for plank/abs
+    html += `<button class="timer-btn" data-open-timer="30-15-3-${exercises.length || 4}">
+      ${ICONS.timer} Avvia timer esercizi
+    </button>`;
+  }
+  
+  html += `</div>`;
+  return html;
+}
+
+function formatDayTitle(title) {
+  // Split "Lunedi 18 maggio - subtitle" into giorno + data + sottotitolo
+  // Detect day name (Lunedi, Martedi, ...)
+  const m = title.match(/^(Luned[i\u00ec]|Marted[i\u00ec]|Mercoled[i\u00ec]|Gioved[i\u00ec]|Venerd[i\u00ec]|Sabato|Domenica)\s+(.+?)(?:\s+-\s+.+)?$/);
+  if (m) return `<em>${m[1]}</em><br>${m[2]}`;
+  return title;
+}
+
+function getWeek(idx) {
+  return Math.floor(idx / 7) + 1;
+}
+
+function computeDayProgress(idx) {
+  const day = DAYS[idx];
+  let total = 0, done = 0;
+  // Meals
+  day.pasti.forEach((p, pi) => {
+    p.items.forEach((_, ii) => {
+      total++;
+      if (state.checks[`d${idx}-m${pi}-${ii}`]) done++;
+    });
+  });
+  // Giornata
+  day.giornata.forEach((_, gi) => {
+    total++;
+    if (state.checks[`d${idx}-g-${gi}`]) done++;
+  });
+  // Sport faccende items
+  day.sportEFaccende.forEach((sec, si) => {
+    if (sec.items) {
+      sec.items.forEach((_, ii) => {
+        total++;
+        if (state.checks[`d${idx}-s${si}-${ii}`]) done++;
+      });
+    }
+    if (sec.tabella) {
+      sec.tabella.forEach((_, ei) => {
+        total++;
+        if (state.exercises[`d${idx}-ex${si}-${ei}`]) done++;
+      });
+    } else if (sec.items && (sec.titolo||'').toLowerCase().match(/sport|allenamento|corsa|addominali|hiit|full body/)) {
+      // exercises counted again via state.exercises
+      sec.items.forEach((_, ei) => {
+        // Already counted above as items, skip
+      });
+    }
+  });
+  if (total === 0) return 0;
+  return Math.round(done / total * 100);
+}
+
+function computeWeekProgress(week) {
+  let total = 0, done = 0;
+  DAYS.forEach((day, idx) => {
+    if (getWeek(idx) !== week) return;
+    day.pasti.forEach((p, pi) => p.items.forEach((_, ii) => {
+      total++;
+      if (state.checks[`d${idx}-m${pi}-${ii}`]) done++;
+    }));
+    day.giornata.forEach((_, gi) => {
+      total++;
+      if (state.checks[`d${idx}-g-${gi}`]) done++;
+    });
+    day.sportEFaccende.forEach((sec, si) => {
+      if (sec.items) sec.items.forEach((_, ii) => {
+        total++;
+        if (state.checks[`d${idx}-s${si}-${ii}`]) done++;
+      });
+      if (sec.tabella) sec.tabella.forEach((_, ei) => {
+        total++;
+        if (state.exercises[`d${idx}-ex${si}-${ei}`]) done++;
+      });
+    });
+  });
+  if (total === 0) return 0;
+  return Math.round(done / total * 100);
+}
+
+function computeTotalProgress() {
+  let total = 0, done = 0;
+  DAYS.forEach((day, idx) => {
+    day.pasti.forEach((p, pi) => p.items.forEach((_, ii) => {
+      total++;
+      if (state.checks[`d${idx}-m${pi}-${ii}`]) done++;
+    }));
+    day.giornata.forEach((_, gi) => {
+      total++;
+      if (state.checks[`d${idx}-g-${gi}`]) done++;
+    });
+    day.sportEFaccende.forEach((sec, si) => {
+      if (sec.items) sec.items.forEach((_, ii) => {
+        total++;
+        if (state.checks[`d${idx}-s${si}-${ii}`]) done++;
+      });
+      if (sec.tabella) sec.tabella.forEach((_, ei) => {
+        total++;
+        if (state.exercises[`d${idx}-ex${si}-${ei}`]) done++;
+      });
+    });
+  });
+  return { done, total, pct: total ? Math.round(done/total*100) : 0 };
+}
+
+function attachOggiHandlers() {
+  document.querySelectorAll('[data-check]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      // Skip if click on a recipe link
+      if (e.target.closest('.recipe-link')) return;
+      const k = el.dataset.check;
+      state.checks[k] = !state.checks[k];
+      el.classList.toggle('checked');
+      saveState();
+      updateProgress();
+    });
+  });
+  document.querySelectorAll('[data-exercise]').forEach(el => {
+    el.addEventListener('click', () => {
+      const k = el.dataset.exercise;
+      state.exercises[k] = !state.exercises[k];
+      el.classList.toggle('done');
+      saveState();
+      updateProgress();
+    });
+  });
+  document.querySelectorAll('.recipe-link').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openRecipe(el.dataset.recipe);
+    });
+  });
+  document.querySelectorAll('[data-open-timer]').forEach(el => {
+    el.addEventListener('click', () => openTimer(el.dataset.openTimer));
+  });
+  
+  const prev = document.getElementById('prev-day');
+  const next = document.getElementById('next-day');
+  if (prev) prev.addEventListener('click', () => navigate(-1));
+  if (next) next.addEventListener('click', () => navigate(1));
+}
+
+function navigate(delta) {
+  const newIdx = state.currentDay + delta;
+  if (newIdx < 0 || newIdx >= DAYS.length) return;
+  state.currentDay = newIdx;
+  saveState();
+  renderOggi();
+  try { window.scrollTo({top: 0, behavior: 'smooth'}); } catch(e) { try { window.scrollTo(0,0); } catch(e2){} }
+}
+
+function updateProgress() {
+  const pct = computeDayProgress(state.currentDay);
+  const pb = document.querySelector('.progress-fill');
+  const txt = document.querySelector('.progress-percent');
+  if (pb) pb.style.width = pct + '%';
+  if (txt) txt.textContent = pct + '%';
+}
+
+// ---------- CALENDAR VIEW ----------
+function renderCalendario() {
+  const html = [];
+  html.push(`
+    <div class="calendar-header">
+      <div class="calendar-subtitle">Programma di 24 giorni</div>
+      <h1 class="calendar-title">Calendario</h1>
+    </div>
+    <div class="calendar-grid">
+  `);
+  
+  // Day labels Lun-Dom (Italian style)
+  ['L','M','M','G','V','S','D'].forEach(d => {
+    html.push(`<div class="calendar-day-label">${d}</div>`);
+  });
+  
+  // Pad to align with Monday start (18 mai 2026 = lundi → no padding needed)
+  const startWeekday = (START_DATE.getDay() + 6) % 7; // 0=Mon...6=Sun
+  for (let i = 0; i < startWeekday; i++) {
+    html.push('<div class="calendar-cell empty"></div>');
+  }
+  
+  const todayIdx = todayIndex();
+  
+  DAYS.forEach((day, idx) => {
+    const d = dateForIndex(idx);
+    const pct = computeDayProgress(idx);
+    const classes = ['calendar-cell'];
+    if (pct === 100) classes.push('completed');
+    else if (pct > 0) classes.push('partial');
+    if (idx === todayIdx) classes.push('today');
+    if (d > new Date()) classes.push('future');
+    
+    html.push(`<div class="${classes.join(' ')}" data-day-idx="${idx}">
+      <div class="calendar-cell-num">${d.getDate()}</div>
+      <div class="calendar-cell-day">${DAYS_SHORT[d.getDay()]}</div>
+    </div>`);
+  });
+  
+  html.push(`</div>
+    <div class="calendar-legend">
+      <div class="legend-item"><div class="legend-square completed"></div>Completato</div>
+      <div class="legend-item"><div class="legend-square partial"></div>In corso</div>
+      <div class="legend-item"><div class="legend-square today"></div>Oggi</div>
+    </div>
+  `);
+  
+  document.getElementById('view-calendario').innerHTML = html.join('');
+  
+  document.querySelectorAll('#view-calendario [data-day-idx]').forEach(el => {
+    el.addEventListener('click', () => {
+      state.currentDay = parseInt(el.dataset.dayIdx);
+      saveState();
+      switchView('oggi');
+      renderOggi();
+    });
+  });
+}
+
+// ---------- STATS VIEW ----------
+function renderStatistiche() {
+  const total = computeTotalProgress();
+  const today = todayIndex();
+  const todayPct = computeDayProgress(today);
+  
+  // Streak: consecutive completed days from start
+  let completedDays = 0;
+  for (let i = 0; i <= today; i++) {
+    if (computeDayProgress(i) >= 80) completedDays++;
+  }
+  
+  // Workouts done
+  let workoutsDone = 0, workoutsTotal = 0;
+  DAYS.forEach((day, idx) => {
+    day.sportEFaccende.forEach((sec, si) => {
+      const isWorkout = (sec.titolo||'').toLowerCase().match(/sport|allenamento|corsa|addominali|hiit|full body/);
+      if (!isWorkout) return;
+      const exCount = (sec.tabella ? sec.tabella.length : (sec.items ? sec.items.length : 0));
+      if (exCount === 0) return;
+      workoutsTotal++;
+      let exDone = 0;
+      for (let ei = 0; ei < exCount; ei++) {
+        if (state.exercises[`d${idx}-ex${si}-${ei}`]) exDone++;
+      }
+      if (exDone === exCount) workoutsDone++;
+    });
+  });
+  
+  const html = `
+    <div class="stats-header">
+      <h1 class="stats-title">Statistiche</h1>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-card-label">Progresso totale</div>
+      <div class="stat-card-value">${total.pct}<em>%</em></div>
+      <div class="stat-card-sub">${total.done} di ${total.total} elementi spuntati</div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-card-label">Oggi</div>
+      <div class="stat-card-value">${todayPct}<em>%</em></div>
+      <div class="stat-card-sub">${dateForIndex(today).getDate()} ${MONTHS_IT[dateForIndex(today).getMonth()]}</div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-card-label">Giorni completati</div>
+      <div class="stat-card-value">${completedDays}<em>/24</em></div>
+      <div class="stat-card-sub">Almeno 80% degli elementi spuntati</div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-card-label">Allenamenti completati</div>
+      <div class="stat-card-value">${workoutsDone}<em>/${workoutsTotal}</em></div>
+      <div class="stat-card-sub">Sessioni 100% complete</div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-card-label">Per settimana</div>
+      <div class="stats-bars">
+        ${[1,2,3,4].map(w => {
+          const pct = computeWeekProgress(w);
+          return `<div class="week-stat">
+            <div class="week-stat-label">
+              <span class="week-stat-name">Settimana ${w}</span>
+              <span class="week-stat-pct">${pct}%</span>
+            </div>
+            <div class="week-stat-bar"><div class="week-stat-fill" style="width:${pct}%"></div></div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+  `;
+  document.getElementById('view-statistiche').innerHTML = html;
+}
+
+// ---------- RICETTE VIEW ----------
+function renderRicette() {
+  const groups = {};
+  RICETTE.forEach(r => {
+    if (!groups[r.tag]) groups[r.tag] = [];
+    groups[r.tag].push(r);
+  });
+  
+  const groupNames = {
+    'colazione': 'Colazione',
+    'pranzo-rapido': 'Pranzo veloce',
+    'pranzo-ufficio': 'Pranzo da portare in ufficio',
+    'cena': 'Cena',
+    'dessert': 'Dessert'
+  };
+  
+  let html = `
+    <div class="ricette-header">
+      <div class="ricette-subtitle">Ricette del programma</div>
+      <h1 class="ricette-title">Cucina</h1>
+    </div>
+  `;
+  
+  Object.keys(groups).forEach(tag => {
+    html += `<h2 class="section-title" style="margin-top:24px;">${groupNames[tag] || tag}</h2>`;
+    groups[tag].forEach(r => {
+      html += `<div class="ricetta-item" data-ricetta="${r.id}">
+        <div class="ricetta-info">
+          <div class="ricetta-nome">${r.nome}</div>
+          <div class="ricetta-meta">
+            <span>${r.tempo}</span>
+            <span>${r.porzioni} porzione${r.porzioni>1?'i':''}</span>
+          </div>
+        </div>
+        <div class="ricetta-arrow">›</div>
+      </div>`;
+    });
+  });
+  
+  document.getElementById('view-ricette').innerHTML = html;
+  
+  document.querySelectorAll('[data-ricetta]').forEach(el => {
+    el.addEventListener('click', () => openRecipe(el.dataset.ricetta));
+  });
+}
+
+// ---------- RECIPE MODAL ----------
+function openRecipe(id) {
+  const r = RICETTE.find(x => x.id === id);
+  if (!r) return;
+  const html = `
+    <div class="modal-handle"></div>
+    <button class="modal-close" id="modal-close-btn">${ICONS.close}</button>
+    <div class="modal-header">
+      <h2 class="modal-title"><em>${r.nome}</em></h2>
+      <div class="modal-meta">
+        <span>${r.tempo}</span>
+        <span>${r.porzioni} porzione${r.porzioni>1?'i':''}</span>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section-title">Ingredienti</div>
+      <ul class="modal-list">
+        ${r.ingredienti.map(i => `<li>${i}</li>`).join('')}
+      </ul>
+      <div class="modal-section-title">Preparazione</div>
+      <ol class="modal-list numbered">
+        ${r.preparazione.map(p => `<li>${p}</li>`).join('')}
+      </ol>
+      ${r.note ? `<div class="modal-note">${r.note}</div>` : ''}
+    </div>
+  `;
+  showModal(html);
+}
+
+function showModal(content) {
+  const backdrop = document.getElementById('modal-backdrop');
+  const modal = document.getElementById('modal-content');
+  modal.innerHTML = content;
+  backdrop.classList.add('show');
+  document.body.classList.add('no-scroll');
+  setTimeout(() => {
+    const closeBtn = document.getElementById('modal-close-btn');
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  }, 0);
+}
+
+function closeModal() {
+  const backdrop = document.getElementById('modal-backdrop');
+  backdrop.classList.remove('show');
+  document.body.classList.remove('no-scroll');
+  stopTimer();
+}
+
+// ---------- TIMER ----------
+let timerState = {
+  work: 40, rest: 20, rounds: 4, exercises: 5,
+  currentRound: 1, currentEx: 1,
+  phase: 'work', // 'work' | 'rest' | 'done' | 'paused'
+  remaining: 40,
+  running: false,
+  interval: null,
+  mode: 'circuit' // 'circuit' | 'stopwatch'
+};
+
+function openTimer(spec) {
+  if (spec === 'stopwatch') {
+    openStopwatch();
+    return;
+  }
+  // Format: "work-rest-rounds-exercises"
+  const [w, r, ro, ex] = spec.split('-').map(n => parseInt(n));
+  timerState.work = w || 40;
+  timerState.rest = r || 20;
+  timerState.rounds = ro || 4;
+  timerState.exercises = ex || 5;
+  timerState.currentRound = 1;
+  timerState.currentEx = 1;
+  timerState.phase = 'work';
+  timerState.remaining = timerState.work;
+  timerState.running = false;
+  timerState.mode = 'circuit';
+  renderTimer();
+}
+
+function renderTimer() {
+  const ts = timerState;
+  const phaseLabel = ts.phase === 'work' ? 'Lavoro' : (ts.phase === 'rest' ? 'Recupero' : (ts.phase === 'done' ? 'Completato' : 'In pausa'));
+  const html = `
+    <div class="modal-handle"></div>
+    <button class="modal-close" id="modal-close-btn">${ICONS.close}</button>
+    <div class="modal-header">
+      <h2 class="modal-title">Timer <em>HIIT</em></h2>
+      <div class="modal-meta">
+        <span>Giro ${ts.currentRound}/${ts.rounds}</span>
+        <span>Esercizio ${ts.currentEx}/${ts.exercises}</span>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="timer-display">
+        <div class="timer-phase ${ts.phase}">${phaseLabel}</div>
+        <div class="timer-number">${String(ts.remaining).padStart(2,'0')}</div>
+        <div class="timer-info">secondi</div>
+      </div>
+      
+      <div class="timer-controls">
+        <button class="timer-control-btn primary" id="timer-toggle">
+          ${ts.running ? ICONS.pause + ' Pausa' : ICONS.play + ' ' + (ts.phase==='done'?'Riavvia':'Avvia')}
+        </button>
+        <button class="timer-control-btn" id="timer-reset">
+          ${ICONS.reset} Reset
+        </button>
+      </div>
+      
+      <div class="timer-settings">
+        <div class="timer-setting">
+          <div class="timer-setting-label">Lavoro (s)</div>
+          <div class="timer-setting-control">
+            <button class="timer-pm-btn" data-adj="work-down">−</button>
+            <span class="timer-setting-value" id="set-work">${ts.work}</span>
+            <button class="timer-pm-btn" data-adj="work-up">+</button>
+          </div>
+        </div>
+        <div class="timer-setting">
+          <div class="timer-setting-label">Recupero (s)</div>
+          <div class="timer-setting-control">
+            <button class="timer-pm-btn" data-adj="rest-down">−</button>
+            <span class="timer-setting-value" id="set-rest">${ts.rest}</span>
+            <button class="timer-pm-btn" data-adj="rest-up">+</button>
+          </div>
+        </div>
+        <div class="timer-setting">
+          <div class="timer-setting-label">Giri</div>
+          <div class="timer-setting-control">
+            <button class="timer-pm-btn" data-adj="rounds-down">−</button>
+            <span class="timer-setting-value" id="set-rounds">${ts.rounds}</span>
+            <button class="timer-pm-btn" data-adj="rounds-up">+</button>
+          </div>
+        </div>
+        <div class="timer-setting">
+          <div class="timer-setting-label">Esercizi</div>
+          <div class="timer-setting-control">
+            <button class="timer-pm-btn" data-adj="ex-down">−</button>
+            <span class="timer-setting-value" id="set-ex">${ts.exercises}</span>
+            <button class="timer-pm-btn" data-adj="ex-up">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  showModal(html);
+  
+  // Bind controls
+  document.getElementById('timer-toggle').addEventListener('click', toggleTimer);
+  document.getElementById('timer-reset').addEventListener('click', resetTimer);
+  document.querySelectorAll('[data-adj]').forEach(b => b.addEventListener('click', () => adjustTimer(b.dataset.adj)));
+}
+
+function adjustTimer(action) {
+  if (timerState.running) return;
+  const ts = timerState;
+  const map = {
+    'work-down': () => ts.work = Math.max(10, ts.work - 5),
+    'work-up': () => ts.work += 5,
+    'rest-down': () => ts.rest = Math.max(5, ts.rest - 5),
+    'rest-up': () => ts.rest += 5,
+    'rounds-down': () => ts.rounds = Math.max(1, ts.rounds - 1),
+    'rounds-up': () => ts.rounds = Math.min(12, ts.rounds + 1),
+    'ex-down': () => ts.exercises = Math.max(1, ts.exercises - 1),
+    'ex-up': () => ts.exercises = Math.min(12, ts.exercises + 1)
+  };
+  if (map[action]) map[action]();
+  ts.remaining = ts.work;
+  ts.currentRound = 1;
+  ts.currentEx = 1;
+  ts.phase = 'work';
+  renderTimer();
+}
+
+function toggleTimer() {
+  const ts = timerState;
+  if (ts.phase === 'done') {
+    ts.currentRound = 1;
+    ts.currentEx = 1;
+    ts.phase = 'work';
+    ts.remaining = ts.work;
+  }
+  ts.running = !ts.running;
+  if (ts.running) {
+    ts.interval = setInterval(tickTimer, 1000);
+  } else {
+    clearInterval(ts.interval);
+  }
+  renderTimer();
+}
+
+function resetTimer() {
+  stopTimer();
+  timerState.currentRound = 1;
+  timerState.currentEx = 1;
+  timerState.phase = 'work';
+  timerState.remaining = timerState.work;
+  renderTimer();
+}
+
+function stopTimer() {
+  if (timerState.interval) clearInterval(timerState.interval);
+  timerState.running = false;
+  timerState.interval = null;
+}
+
+function tickTimer() {
+  const ts = timerState;
+  ts.remaining--;
+  if (ts.remaining <= 0) {
+    beep();
+    // Phase transition
+    if (ts.phase === 'work') {
+      // Check if last exercise of last round
+      if (ts.currentEx >= ts.exercises && ts.currentRound >= ts.rounds) {
+        ts.phase = 'done';
+        ts.remaining = 0;
+        ts.running = false;
+        clearInterval(ts.interval);
+        bigBeep();
+        renderTimer();
+        return;
+      }
+      ts.phase = 'rest';
+      ts.remaining = ts.rest;
+    } else {
+      // From rest → next exercise/round
+      if (ts.currentEx >= ts.exercises) {
+        ts.currentEx = 1;
+        ts.currentRound++;
+      } else {
+        ts.currentEx++;
+      }
+      ts.phase = 'work';
+      ts.remaining = ts.work;
+    }
+    renderTimer();
+  } else {
+    // Only update the number, not the whole modal
+    const numEl = document.querySelector('.timer-number');
+    if (numEl) numEl.textContent = String(ts.remaining).padStart(2,'0');
+    // Beep on last 3 sec
+    if (ts.remaining <= 3) beep(true);
+  }
+}
+
+// Audio beeps using Web Audio API (no external files)
+let audioCtx = null;
+function beep(soft = false) {
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const o = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    o.frequency.value = soft ? 800 : 1100;
+    g.gain.value = 0.12;
+    o.connect(g); g.connect(audioCtx.destination);
+    o.start();
+    g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.18);
+    o.stop(audioCtx.currentTime + 0.2);
+    // Vibration
+    if (navigator.vibrate) navigator.vibrate(soft ? 30 : 80);
+  } catch(e) {}
+}
+function bigBeep() {
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    [880, 1100, 1320].forEach((freq, i) => {
+      setTimeout(() => {
+        const o = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        o.frequency.value = freq;
+        g.gain.value = 0.15;
+        o.connect(g); g.connect(audioCtx.destination);
+        o.start();
+        g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
+        o.stop(audioCtx.currentTime + 0.32);
+      }, i*180);
+    });
+    if (navigator.vibrate) navigator.vibrate([100,50,100,50,200]);
+  } catch(e) {}
+}
+
+// ---------- STOPWATCH (for running) ----------
+let swState = { running: false, elapsed: 0, interval: null };
+function openStopwatch() {
+  swState = { running: false, elapsed: 0, interval: null };
+  renderStopwatch();
+}
+function formatSW(s) {
+  const m = Math.floor(s/60);
+  const sec = s % 60;
+  return String(m).padStart(2,'0') + ':' + String(sec).padStart(2,'0');
+}
+function renderStopwatch() {
+  const html = `
+    <div class="modal-handle"></div>
+    <button class="modal-close" id="modal-close-btn">${ICONS.close}</button>
+    <div class="modal-header">
+      <h2 class="modal-title"><em>Cronometro</em> corsa</h2>
+      <div class="modal-meta"><span>Durata libera</span></div>
+    </div>
+    <div class="modal-body">
+      <div class="timer-display">
+        <div class="timer-phase">${swState.running ? 'In corso' : 'In pausa'}</div>
+        <div class="timer-number">${formatSW(swState.elapsed)}</div>
+        <div class="timer-info">minuti</div>
+      </div>
+      <div class="timer-controls">
+        <button class="timer-control-btn primary" id="sw-toggle">
+          ${swState.running ? ICONS.pause + ' Pausa' : ICONS.play + ' Avvia'}
+        </button>
+        <button class="timer-control-btn" id="sw-reset">
+          ${ICONS.reset} Reset
+        </button>
+      </div>
+    </div>
+  `;
+  showModal(html);
+  document.getElementById('sw-toggle').addEventListener('click', () => {
+    swState.running = !swState.running;
+    if (swState.running) {
+      swState.interval = setInterval(() => {
+        swState.elapsed++;
+        const el = document.querySelector('.timer-number');
+        if (el) el.textContent = formatSW(swState.elapsed);
+      }, 1000);
+    } else {
+      clearInterval(swState.interval);
+    }
+    renderStopwatch();
+  });
+  document.getElementById('sw-reset').addEventListener('click', () => {
+    swState.running = false;
+    if (swState.interval) clearInterval(swState.interval);
+    swState.elapsed = 0;
+    renderStopwatch();
+  });
+}
+
+// ---------- VIEW SWITCHING ----------
+function switchView(name) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + name).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.view === name));
+  
+  // Render the view content if needed
+  if (name === 'calendario') renderCalendario();
+  if (name === 'statistiche') renderStatistiche();
+  if (name === 'ricette') renderRicette();
+  if (name === 'oggi') renderOggi();
+  
+  try { window.scrollTo(0, 0); } catch(e) {}
+}
+
+// ---------- THEME ----------
+function toggleTheme() {
+  state.theme = state.theme === 'light' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', state.theme);
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', state.theme === 'dark' ? '#14110D' : '#F5F1E8');
+  document.getElementById('theme-icon').innerHTML = state.theme === 'dark' ? ICONS.sun : ICONS.moon;
+  saveState();
+}
+
+// ---------- BOOT ----------
+function buildShell() {
+  const app = document.getElementById('app');
+  app.innerHTML = `
+    <header class="app-header">
+      <div>
+        <div class="app-title">Programma <em>fitness</em></div>
+        <div class="app-subtitle">18 mag – 10 giu 2026</div>
+      </div>
+      <button class="theme-toggle" id="theme-toggle"><span id="theme-icon">${ICONS.moon}</span></button>
+    </header>
+    
+    <main>
+      <div id="view-oggi" class="view active"></div>
+      <div id="view-calendario" class="view"></div>
+      <div id="view-statistiche" class="view"></div>
+      <div id="view-ricette" class="view"></div>
+    </main>
+    
+    <nav class="tab-bar">
+      <button class="tab-btn active" data-view="oggi">${ICONS.home}<span>Oggi</span></button>
+      <button class="tab-btn" data-view="calendario">${ICONS.calendar}<span>Calendario</span></button>
+      <button class="tab-btn" data-view="statistiche">${ICONS.stats}<span>Stats</span></button>
+      <button class="tab-btn" data-view="ricette">${ICONS.book}<span>Ricette</span></button>
+    </nav>
+    
+    <div class="modal-backdrop" id="modal-backdrop">
+      <div class="modal" id="modal-content"></div>
+    </div>
+  `;
+  
+  document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+  document.querySelectorAll('.tab-btn').forEach(b => {
+    b.addEventListener('click', () => switchView(b.dataset.view));
+  });
+  document.getElementById('modal-backdrop').addEventListener('click', (e) => {
+    if (e.target.id === 'modal-backdrop') closeModal();
+  });
+  
+  // Apply theme
+  if (state.theme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#14110D');
+    document.getElementById('theme-icon').innerHTML = ICONS.sun;
+  }
+}
+
+// Init - aspetta che il DOM sia pronto e wrap tutto in try/catch
+function bootApp() {
+  try {
+    loadState();
+    buildShell();
+    renderOggi();
+  } catch (err) {
+    // Display the error visibly so we can debug on iPhone
+    const appEl = document.getElementById('app') || document.body;
+    appEl.innerHTML = '<div style="padding:24px;font-family:sans-serif;color:#1A1611;background:#F5F1E8;min-height:100vh;">' +
+      '<h2 style="margin:0 0 12px">Errore nell\'app</h2>' +
+      '<p>Si è verificato un errore durante l\'avvio:</p>' +
+      '<pre style="background:#fff;padding:12px;border-radius:8px;font-size:12px;overflow:auto;white-space:pre-wrap;">' +
+      (err.message || err) + '\n\n' + (err.stack || '') +
+      '</pre></div>';
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootApp);
+} else {
+  bootApp();
+}
+
+
+</script>
+
+</body>
+</html>
